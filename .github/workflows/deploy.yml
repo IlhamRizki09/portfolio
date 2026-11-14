@@ -32,8 +32,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          VITE_WEB3FORMS_KEY: ${{ secrets.VITE_WEB3FORMS_KEY }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v6

@@ -18,7 +18,7 @@ export default function Contact({ isDark }: ContactProps) {
 
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error' | 'notice'>('idle');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [copied, setCopied] = useState(false);
 
 
@@ -53,12 +53,6 @@ export default function Contact({ isDark }: ContactProps) {
       setFormData({ name: '', email: '', subject: '', message: '' });
       setErrors({});
       showToast(t.contact.successNotice, 'success');
-      return;
-    }
-
-    if (result.reason === 'not-configured') {
-      window.open(gmailComposeUrl(payload.subject, payload.message), '_blank', 'noopener,noreferrer');
-      setStatus('notice');
       return;
     }
 
@@ -330,31 +324,6 @@ export default function Contact({ isDark }: ContactProps) {
                       rel="noopener noreferrer"
                       className={`underline font-bold mt-1 inline-block ${
                         isDark ? 'text-white' : 'text-rose-900'
-                      }`}
-                    >
-                      {t.contact.openGmail} &rarr;
-                    </a>
-                  </div>
-                )}
-
-                {status === 'notice' && (
-                  <div
-                    className={`p-3.5 rounded-xl border text-xs text-center leading-relaxed mt-3 ${
-                      isDark
-                        ? 'border-amber-500/30 bg-amber-500/10 text-amber-300'
-                        : 'border-amber-300 bg-amber-50 text-amber-800'
-                    }`}
-                  >
-                    <p>{t.contact.gmailOpenedNotice}</p>
-                    <a
-                      href={gmailComposeUrl(
-                        formData.subject || 'Portfolio Inquiry',
-                        `${formData.message}\n\n— ${formData.name}\n${formData.email}`
-                      )}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`underline font-bold mt-1 inline-block ${
-                        isDark ? 'text-white' : 'text-amber-900'
                       }`}
                     >
                       {t.contact.openGmail} &rarr;

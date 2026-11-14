@@ -162,7 +162,6 @@ export interface Translations {
     validationEmailFormat: string;
     validationSubject: string;
     validationMessage: string;
-    gmailOpenedNotice: string;
     openGmail: string;
   };
   cmdPalette: {
@@ -353,7 +352,6 @@ export const translations: Record<Language, Translations> = {
       validationEmailFormat: "Format alamat email tidak valid.",
       validationSubject: "Subjek pesan wajib diisi.",
       validationMessage: "Pesan tidak boleh kosong.",
-      gmailOpenedNotice: "Gmail sudah dibuka di tab baru dengan pesan yang terisi. Tekan Kirim di Gmail untuk mengirim ke ir6595187@gmail.com.",
       openGmail: "Buka Gmail",
     },
     cmdPalette: {
@@ -542,7 +540,6 @@ export const translations: Record<Language, Translations> = {
       validationEmailFormat: "Invalid email format.",
       validationSubject: "Subject is required.",
       validationMessage: "Message cannot be empty.",
-      gmailOpenedNotice: "Gmail opened in a new tab with your message prefilled. Press Send in Gmail to deliver it to ir6595187@gmail.com.",
       openGmail: "Open Gmail",
     },
     cmdPalette: {

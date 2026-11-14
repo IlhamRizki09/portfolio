@@ -1,3 +1,5 @@
+import { personalInfo } from '../data/portfolioData';
+
 export interface ContactPayload {
   name: string;
   email: string;
@@ -5,40 +7,34 @@ export interface ContactPayload {
   message: string;
 }
 
-export type ContactResult =
-  | { ok: true }
-  | { ok: false; reason: 'not-configured' | 'request-failed' };
+export type ContactResult = { ok: true } | { ok: false };
 
-const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
+const ENDPOINT = `https://formsubmit.co/ajax/${encodeURIComponent(personalInfo.email)}`;
 
 export async function sendContactMessage(payload: ContactPayload): Promise<ContactResult> {
-  if (!ACCESS_KEY) {
-    return { ok: false, reason: 'not-configured' };
-  }
-
   try {
-    const response = await fetch('https://api.web3forms.com/submit', {
+    const response = await fetch(ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        access_key: ACCESS_KEY,
-        subject: `[Portfolio] ${payload.subject}`,
-        from_name: payload.name,
+        name: payload.name,
         email: payload.email,
-        replyto: payload.email,
-        message: `Nama: ${payload.name}\nEmail: ${payload.email}\n\n${payload.message}`,
+        _replyto: payload.email,
+        _subject: `[Portfolio] ${payload.subject}`,
+        _template: 'table',
+        _captcha: 'false',
+        message: `${payload.message}\n\n— ${payload.name} (${payload.email})`,
       }),
     });
 
-    const data = (await response.json().catch(() => null)) as { success?: boolean } | null;
+    const data = (await response.json().catch(() => null)) as { success?: boolean | string } | null;
+    const delivered = data?.success === true || data?.success === 'true';
 
-    return response.ok && data?.success
-      ? { ok: true }
-      : { ok: false, reason: 'request-failed' };
+    return response.ok && delivered ? { ok: true } : { ok: false };
   } catch {
-    return { ok: false, reason: 'request-failed' };
+    return { ok: false };
   }
 }

@@ -49,7 +49,7 @@ The site is deployed to two targets from the same codebase:
 
 `vite.config.ts` uses `/portfolio/` for GitHub Pages builds and `/` for Vercel builds (detected via the `VERCEL` environment variable). OG/Twitter metadata is driven by `VITE_SITE_URL`, with a default in `.env` for Pages and a production override in Vercel.
 
-The contact form sends messages through Web3Forms when `VITE_WEB3FORMS_KEY` is configured (GitHub Actions secret + Vercel environment variable). Without a key it falls back to opening Gmail Compose with the message prefilled.
+The contact form posts directly to FormSubmit's AJAX endpoint, so messages are delivered to `personalInfo.email` without opening a mail client. The endpoint requires a one-time activation from the recipient inbox.
 
 ## Project Structure
 
