@@ -3,7 +3,8 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig(({ command }) => ({
-  base: command === 'build' ? '/portfolio/' : '/',
+  // GitHub Pages serves from /portfolio/, Vercel from the domain root.
+  base: process.env.VERCEL ? '/' : command === 'build' ? '/portfolio/' : '/',
   plugins: [react(), tailwindcss()],
   build: {
     chunkSizeWarningLimit: 900,
