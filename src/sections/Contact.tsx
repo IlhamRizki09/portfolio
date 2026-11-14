@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Send, Copy, Check, ExternalLink } from 'lucide-react';
+import { Mail, Send, Copy, Check, ExternalLink, Loader2 } from 'lucide-react';
 import { GithubIcon, InstagramIcon, LinkedinIcon } from '../components/Icons';
 import SectionHeading from '../components/SectionHeading';
 import Card3DTilt from '../components/Card3DTilt';
 import { personalInfo } from '../data/portfolioData';
 import { usePortfolio } from '../context/PortfolioContext';
 import { gmailComposeUrl } from '../utils/gmail';
+import { sendContactMessage } from '../utils/contactService';
 
 interface ContactProps {
   isDark: boolean;
@@ -17,7 +18,7 @@ export default function Contact({ isDark }: ContactProps) {
 
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [status, setStatus] = useState<'idle' | 'notice'>('idle');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error' | 'notice'>('idle');
   const [copied, setCopied] = useState(false);
 
 
@@ -33,12 +34,35 @@ export default function Contact({ isDark }: ContactProps) {
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    const body = `${formData.message.trim()}\n\n— ${formData.name.trim()}\n${formData.email.trim()}`;
-    window.open(gmailComposeUrl(formData.subject.trim(), body), '_blank', 'noopener,noreferrer');
-    setStatus('notice');
+
+    const payload = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      subject: formData.subject.trim(),
+      message: formData.message.trim(),
+    };
+
+    setStatus('sending');
+    const result = await sendContactMessage(payload);
+
+    if (result.ok) {
+      setStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setErrors({});
+      showToast(t.contact.successNotice, 'success');
+      return;
+    }
+
+    if (result.reason === 'not-configured') {
+      window.open(gmailComposeUrl(payload.subject, payload.message), '_blank', 'noopener,noreferrer');
+      setStatus('notice');
+      return;
+    }
+
+    setStatus('error');
   };
 
   const handleCopyEmail = async () => {
@@ -265,11 +289,53 @@ export default function Contact({ isDark }: ContactProps) {
 
                 <button
                   type="submit"
-                  className="w-full h-12 rounded-xl font-bold text-sm bg-gradient-to-r from-[#386BFF] via-[#7855E8] to-[#28D6E8] text-white shadow-lg shadow-[#386BFF]/30 flex items-center justify-center gap-2 cursor-pointer hover:opacity-95 transition-opacity"
+                  disabled={status === 'sending'}
+                  className="w-full h-12 rounded-xl font-bold text-sm bg-gradient-to-r from-[#386BFF] via-[#7855E8] to-[#28D6E8] text-white shadow-lg shadow-[#386BFF]/30 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-wait hover:opacity-95 transition-opacity"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>{t.contact.sendBtn}</span>
+                  {status === 'sending' ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Send className="w-4 h-4" />
+                  )}
+                  <span>{status === 'sending' ? t.contact.sendingBtn : t.contact.sendBtn}</span>
                 </button>
+
+                {status === 'success' && (
+                  <div
+                    className={`p-3.5 rounded-xl border text-xs text-center leading-relaxed mt-3 ${
+                      isDark
+                        ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
+                        : 'border-emerald-300 bg-emerald-50 text-emerald-700'
+                    }`}
+                  >
+                    <p>{t.contact.successNotice}</p>
+                  </div>
+                )}
+
+                {status === 'error' && (
+                  <div
+                    className={`p-3.5 rounded-xl border text-xs text-center leading-relaxed mt-3 ${
+                      isDark
+                        ? 'border-rose-500/30 bg-rose-500/10 text-rose-300'
+                        : 'border-rose-300 bg-rose-50 text-rose-700'
+                    }`}
+                  >
+                    <p>{t.contact.errorNotice}</p>
+                    <a
+                      href={gmailComposeUrl(
+                        formData.subject || 'Portfolio Inquiry',
+                        `${formData.message}\n\n— ${formData.name}\n${formData.email}`
+                      )}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`underline font-bold mt-1 inline-block ${
+                        isDark ? 'text-white' : 'text-rose-900'
+                      }`}
+                    >
+                      {t.contact.openGmail} &rarr;
+                    </a>
+                  </div>
+                )}
 
                 {status === 'notice' && (
                   <div

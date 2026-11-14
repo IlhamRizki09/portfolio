@@ -152,6 +152,9 @@ export interface Translations {
     messageLabel: string;
     messagePlaceholder: string;
     sendBtn: string;
+    sendingBtn: string;
+    successNotice: string;
+    errorNotice: string;
     copyEmail: string;
     emailCopied: string;
     validationName: string;
@@ -339,7 +342,10 @@ export const translations: Record<Language, Translations> = {
       subjectPlaceholder: "Peluang Magang / Kolaborasi Proyek",
       messageLabel: "Pesan Anda",
       messagePlaceholder: "Tuliskan pesan atau penawaran Anda di sini...",
-      sendBtn: "Kirim via Gmail",
+      sendBtn: "Kirim Pesan",
+      sendingBtn: "Mengirim...",
+      successNotice: "Pesan berhasil terkirim. Terima kasih!",
+      errorNotice: "Pesan gagal dikirim. Silakan coba lagi atau kirim langsung melalui Gmail.",
       copyEmail: "Salin Alamat Email",
       emailCopied: "Alamat email berhasil disalin!",
       validationName: "Nama lengkap wajib diisi.",
@@ -525,7 +531,10 @@ export const translations: Record<Language, Translations> = {
       subjectPlaceholder: "Internship Inquiry / Project Collaboration",
       messageLabel: "Your Message",
       messagePlaceholder: "Write your message or inquiry here...",
-      sendBtn: "Send via Gmail",
+      sendBtn: "Send Message",
+      sendingBtn: "Sending...",
+      successNotice: "Message sent successfully. Thank you!",
+      errorNotice: "Failed to send the message. Please try again or send it directly via Gmail.",
       copyEmail: "Copy Email Address",
       emailCopied: "Email address copied!",
       validationName: "Full name is required.",
