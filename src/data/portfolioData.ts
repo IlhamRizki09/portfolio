@@ -1,3 +1,5 @@
+import { assetUrl } from '../utils/assetUrl';
+
 export interface PersonalInfo {
   name: string;
   brand: string;
@@ -38,8 +40,8 @@ export const personalInfo: PersonalInfo = {
   description: "Mahasiswa Informatika di Universitas PGRI Semarang dengan fokus pada Web Development, UI/UX Design, dan rekayasa perangkat lunak modern. Memiliki komitmen kuat dalam menciptakan solusi digital fungsional, performan tinggi, dan berorientasi pengguna.",
   status: "Open to Internship Opportunities",
   cvFileName: "CV_Muhammad_Ilham_Rizki.pdf",
-  cvPath: "/assets/cv/CV_Muhammad_Ilham_Rizki.pdf",
-  profileImagePath: "/assets/images/profile.jpg",
+  cvPath: assetUrl("/assets/cv/CV_Muhammad_Ilham_Rizki.pdf"),
+  profileImagePath: assetUrl("/assets/images/profile.jpg"),
 };
 
 export interface SkillItem {
@@ -274,8 +276,8 @@ export const certificates: CertificateItem[] = [
     date: "9 November 2026",
     dateEn: "November 9, 2026",
     credentialId: "GGLM26111208",
-    pdfPath: "/assets/certificates/Certificate_Gemini_Academy_Completion.pdf",
-    previewImage: "/assets/certificates/Certificate_Gemini_Academy_Completion.jpg",
+    pdfPath: assetUrl("/assets/certificates/Certificate_Gemini_Academy_Completion.pdf"),
+    previewImage: assetUrl("/assets/certificates/Certificate_Gemini_Academy_Completion.jpg"),
     category: "Artificial Intelligence",
     summaryId:
       "Menyelesaikan pelatihan dan sertifikasi Gemini Academy for Higher Education sebanyak 12 materi pembelajaran dengan total 24 JP, dilaksanakan secara synchronous di Jakarta.",
@@ -327,8 +329,8 @@ export const certificates: CertificateItem[] = [
     date: "9 November 2026",
     dateEn: "November 9, 2026",
     credentialId: "247/KU-IF/UPGRIS/XI/2026",
-    pdfPath: "/assets/certificates/Sertifikat_Kepesertaan_Gemini_UPGRIS.pdf",
-    previewImage: "/assets/certificates/Sertifikat_Kepesertaan_Gemini_UPGRIS.jpg",
+    pdfPath: assetUrl("/assets/certificates/Sertifikat_Kepesertaan_Gemini_UPGRIS.pdf"),
+    previewImage: assetUrl("/assets/certificates/Sertifikat_Kepesertaan_Gemini_UPGRIS.jpg"),
     category: "Artificial Intelligence",
     summaryId:
       "Terdaftar sebagai peserta Kuliah Umum Program Studi Informatika UPGRIS dengan tema \"Think Smart, Code Smarter: Exploring the Power of Gemini AI\" pada 9 November 2026.",
@@ -350,7 +352,7 @@ export const certificates: CertificateItem[] = [
     date: "20 Juni 2026",
     dateEn: "June 20, 2026",
     credentialId: "021/C/PAN_PMK/BEMFTI/VI/2026",
-    previewImage: "/assets/certificates/Sertifikat_Pelatihan_Media_Kreatif_2_BEMFTI.jpg",
+    previewImage: assetUrl("/assets/certificates/Sertifikat_Pelatihan_Media_Kreatif_2_BEMFTI.jpg"),
     category: "Creative Media",
     location: "Gedung D.4.12, Universitas PGRI Semarang",
     summaryId:
@@ -373,7 +375,7 @@ export const certificates: CertificateItem[] = [
     date: "31 Maret 2026",
     dateEn: "March 31, 2026",
     credentialId: "024/A/PAN_PMK/BEMFTI/IV/2026",
-    previewImage: "/assets/certificates/Sertifikat_Pelatihan_Media_Kreatif_BEMFTI.jpg",
+    previewImage: assetUrl("/assets/certificates/Sertifikat_Pelatihan_Media_Kreatif_BEMFTI.jpg"),
     category: "Creative Media",
     location: "Taman Srigunting, Kota Lama Semarang",
     summaryId:

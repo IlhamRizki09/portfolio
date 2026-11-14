@@ -2,6 +2,8 @@
 
 Interactive 3D portfolio of **Muhammad Ilham Rizki**, an Informatics student at Universitas PGRI Semarang and aspiring web developer.
 
+**Live:** https://ilhamrizki09.github.io/portfolio/
+
 Built with Vite, React, TypeScript, Tailwind CSS, Framer Motion, and a Three.js hero scene.
 
 ## Features
@@ -35,6 +37,10 @@ npm run build    # type-check and build for production
 npm run preview  # serve the production build
 npm run lint     # run oxlint
 ```
+
+## Deployment
+
+Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds the site and publishes it to GitHub Pages at https://ilhamrizki09.github.io/portfolio/. The production base path is configured in `vite.config.ts` (`/portfolio/`), and public assets are resolved through `src/utils/assetUrl.ts` so they work both in development (`/`) and on Pages.
 
 ## Project Structure
 
