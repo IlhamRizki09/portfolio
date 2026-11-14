@@ -6,6 +6,7 @@ import SectionHeading from '../components/SectionHeading';
 import Card3DTilt from '../components/Card3DTilt';
 import { personalInfo } from '../data/portfolioData';
 import { usePortfolio } from '../context/PortfolioContext';
+import { gmailComposeUrl } from '../utils/gmail';
 
 interface ContactProps {
   isDark: boolean;
@@ -16,8 +17,9 @@ export default function Contact({ isDark }: ContactProps) {
 
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [status, setStatus] = useState<'idle' | 'sending' | 'notice'>('idle');
+  const [status, setStatus] = useState<'idle' | 'notice'>('idle');
   const [copied, setCopied] = useState(false);
+
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -34,11 +36,9 @@ export default function Contact({ isDark }: ContactProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    setStatus('sending');
-    setTimeout(() => {
-      // In strict adherence to rules: do NOT claim message was sent when SMTP is not configured.
-      setStatus('notice');
-    }, 600);
+    const body = `${formData.message.trim()}\n\n— ${formData.name.trim()}\n${formData.email.trim()}`;
+    window.open(gmailComposeUrl(formData.subject.trim(), body), '_blank', 'noopener,noreferrer');
+    setStatus('notice');
   };
 
   const handleCopyEmail = async () => {
@@ -56,7 +56,7 @@ export default function Contact({ isDark }: ContactProps) {
     {
       icon: Mail,
       label: 'Email Langsung',
-      href: `mailto:${personalInfo.email}`,
+      href: gmailComposeUrl('Inquiry via Portfolio', ''),
       text: personalInfo.email,
     },
     {
@@ -116,8 +116,8 @@ export default function Contact({ isDark }: ContactProps) {
                 <a
                   key={link.label}
                   href={link.href}
-                  target={link.label !== 'Email Langsung' ? '_blank' : undefined}
-                  rel={link.label !== 'Email Langsung' ? 'noopener noreferrer' : undefined}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`flex items-center gap-3.5 p-4 rounded-2xl border transition-all duration-200 group cursor-pointer ${
                     isDark
                       ? 'bg-[#0E162B]/80 border-[#386BFF]/25 hover:border-[#28D6E8]/60 text-[#F5F7FF]'
@@ -148,7 +148,9 @@ export default function Contact({ isDark }: ContactProps) {
               </button>
 
               <a
-                href={`mailto:${personalInfo.email}?subject=Inquiry%20via%20Portfolio`}
+                href={gmailComposeUrl('Inquiry via Portfolio', '')}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`h-11 px-4 rounded-xl text-xs sm:text-sm font-bold border flex items-center gap-2 transition-colors cursor-pointer ${
                   isDark
                     ? 'border-[#386BFF]/30 hover:bg-white/5 text-white'
@@ -156,7 +158,7 @@ export default function Contact({ isDark }: ContactProps) {
                 }`}
               >
                 <Mail className="w-4 h-4 text-[#28D6E8]" />
-                <span>Buka di Mail App</span>
+                <span>{t.contact.openGmail}</span>
               </a>
             </div>
           </motion.div>
@@ -263,23 +265,33 @@ export default function Contact({ isDark }: ContactProps) {
 
                 <button
                   type="submit"
-                  disabled={status === 'sending'}
-                  className="w-full h-12 rounded-xl font-bold text-sm bg-gradient-to-r from-[#386BFF] via-[#7855E8] to-[#28D6E8] text-white shadow-lg shadow-[#386BFF]/30 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 hover:opacity-95 transition-opacity"
+                  className="w-full h-12 rounded-xl font-bold text-sm bg-gradient-to-r from-[#386BFF] via-[#7855E8] to-[#28D6E8] text-white shadow-lg shadow-[#386BFF]/30 flex items-center justify-center gap-2 cursor-pointer hover:opacity-95 transition-opacity"
                 >
                   <Send className="w-4 h-4" />
-                  <span>{status === 'sending' ? t.contact.sendingBtn : t.contact.sendBtn}</span>
+                  <span>{t.contact.sendBtn}</span>
                 </button>
 
                 {status === 'notice' && (
-                  <div className="p-3.5 rounded-xl border border-amber-500/30 bg-amber-500/10 text-amber-300 text-xs text-center leading-relaxed mt-3">
-                    <p>{t.contact.notConfiguredNotice}</p>
+                  <div
+                    className={`p-3.5 rounded-xl border text-xs text-center leading-relaxed mt-3 ${
+                      isDark
+                        ? 'border-amber-500/30 bg-amber-500/10 text-amber-300'
+                        : 'border-amber-300 bg-amber-50 text-amber-800'
+                    }`}
+                  >
+                    <p>{t.contact.gmailOpenedNotice}</p>
                     <a
-                      href={`mailto:${personalInfo.email}?subject=${encodeURIComponent(
-                        formData.subject || 'Portfolio Inquiry'
-                      )}&body=${encodeURIComponent(formData.message)}`}
-                      className="underline font-bold text-white mt-1 inline-block"
+                      href={gmailComposeUrl(
+                        formData.subject || 'Portfolio Inquiry',
+                        `${formData.message}\n\n— ${formData.name}\n${formData.email}`
+                      )}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`underline font-bold mt-1 inline-block ${
+                        isDark ? 'text-white' : 'text-amber-900'
+                      }`}
                     >
-                      Kirim lewat client email Anda &rarr;
+                      {t.contact.openGmail} &rarr;
                     </a>
                   </div>
                 )}

@@ -19,7 +19,6 @@ export interface Translations {
     greeting: string;
     role: string;
     headline: string;
-    description: string;
     status: string;
     exploreBtn: string;
     downloadCvBtn: string;
@@ -153,7 +152,6 @@ export interface Translations {
     messageLabel: string;
     messagePlaceholder: string;
     sendBtn: string;
-    sendingBtn: string;
     copyEmail: string;
     emailCopied: string;
     validationName: string;
@@ -161,7 +159,8 @@ export interface Translations {
     validationEmailFormat: string;
     validationSubject: string;
     validationMessage: string;
-    notConfiguredNotice: string;
+    gmailOpenedNotice: string;
+    openGmail: string;
   };
   cmdPalette: {
     placeholder: string;
@@ -208,7 +207,6 @@ export const translations: Record<Language, Translations> = {
       greeting: "HALO, SAYA",
       role: "Informatics Student & Aspiring Web Developer",
       headline: "Building Ideas Into Digital Experiences.",
-      description: "Mendedikasikan diri pada pengembangan web modern, perancangan antarmuka intuitif, dan rekayasa perangkat lunak fungsional yang bernilai tinggi.",
       status: "Terbuka untuk Peluang Magang (Internship)",
       exploreBtn: "Explore Portfolio",
       downloadCvBtn: "Download CV",
@@ -222,7 +220,7 @@ export const translations: Record<Language, Translations> = {
       bio1: "Halo! Saya Muhammad Ilham Rizki, mahasiswa aktif Program Studi Informatika Semester 5 di Universitas PGRI Semarang.",
       bio2: "Saya memiliki ketertarikan mendalam pada ekosistem web modern, desain interaksi UI/UX, dan perancangan aplikasi digital yang bersih, cepat, serta mudah digunakan.",
       bio3: "Dengan latar belakang vokasi di bidang Teknik Komputer dan Jaringan (TKJ), saya memiliki pemahaman teknis perangkat keras dan jaringan yang melengkapi keahlian rekayasa perangkat lunak saya.",
-      bio4: "Selain fokus akademik, saya aktif berkontribusi di organisasi BEM Fakultas Teknik dan Informatika serta mengemban amanah sebagai Ketua Panitia Dekan Cup 2026.",
+      bio4: "Selain fokus akademik, saya aktif berkontribusi di organisasi BEM Fakultas Teknik dan Informatika serta mengemban amanah sebagai Ketua Departemen Bakat dan Minat.",
       fullName: "Muhammad Ilham Rizki",
       educationLabel: "Universitas PGRI Semarang",
       majorLabel: "Informatika (Semester 5)",
@@ -341,8 +339,7 @@ export const translations: Record<Language, Translations> = {
       subjectPlaceholder: "Peluang Magang / Kolaborasi Proyek",
       messageLabel: "Pesan Anda",
       messagePlaceholder: "Tuliskan pesan atau penawaran Anda di sini...",
-      sendBtn: "Kirim Pesan",
-      sendingBtn: "Mengirim...",
+      sendBtn: "Kirim via Gmail",
       copyEmail: "Salin Alamat Email",
       emailCopied: "Alamat email berhasil disalin!",
       validationName: "Nama lengkap wajib diisi.",
@@ -350,7 +347,8 @@ export const translations: Record<Language, Translations> = {
       validationEmailFormat: "Format alamat email tidak valid.",
       validationSubject: "Subjek pesan wajib diisi.",
       validationMessage: "Pesan tidak boleh kosong.",
-      notConfiguredNotice: "Layanan email otomatis belum terhubung ke backend. Silakan kirimkan email langsung ke ir6595187@gmail.com atau salin email menggunakan tombol di samping.",
+      gmailOpenedNotice: "Gmail sudah dibuka di tab baru dengan pesan yang terisi. Tekan Kirim di Gmail untuk mengirim ke ir6595187@gmail.com.",
+      openGmail: "Buka Gmail",
     },
     cmdPalette: {
       placeholder: "Ketik perintah atau cari bagian website...",
@@ -395,7 +393,6 @@ export const translations: Record<Language, Translations> = {
       greeting: "HELLO, I AM",
       role: "Informatics Student & Aspiring Web Developer",
       headline: "Building Ideas Into Digital Experiences.",
-      description: "Passionate about modern web development, intuitive UI/UX design, and engineering reliable, high-performance digital solutions.",
       status: "Open to Internship Opportunities",
       exploreBtn: "Explore Portfolio",
       downloadCvBtn: "Download CV",
@@ -409,7 +406,7 @@ export const translations: Record<Language, Translations> = {
       bio1: "Hello! I am Muhammad Ilham Rizki, an active 5th-semester Informatics student at Universitas PGRI Semarang.",
       bio2: "I possess a deep enthusiasm for the modern web ecosystem, clean UI/UX interaction design, and building resilient software solutions with great user experiences.",
       bio3: "With a vocational background in Computer Network Engineering, I combine fundamental hardware and networking expertise with modern software development skills.",
-      bio4: "Beyond academics, I actively contribute to the Student Executive Board (BEM FTI) and serve as the Event Chairman for Dekan Cup 2026.",
+      bio4: "Beyond academics, I actively contribute to the Student Executive Board (BEM FTI) and serve as the Head of the Talent and Interest Department.",
       fullName: "Muhammad Ilham Rizki",
       educationLabel: "Universitas PGRI Semarang",
       majorLabel: "Informatics (Semester 5)",
@@ -528,8 +525,7 @@ export const translations: Record<Language, Translations> = {
       subjectPlaceholder: "Internship Inquiry / Project Collaboration",
       messageLabel: "Your Message",
       messagePlaceholder: "Write your message or inquiry here...",
-      sendBtn: "Send Message",
-      sendingBtn: "Sending...",
+      sendBtn: "Send via Gmail",
       copyEmail: "Copy Email Address",
       emailCopied: "Email address copied!",
       validationName: "Full name is required.",
@@ -537,7 +533,8 @@ export const translations: Record<Language, Translations> = {
       validationEmailFormat: "Invalid email format.",
       validationSubject: "Subject is required.",
       validationMessage: "Message cannot be empty.",
-      notConfiguredNotice: "Automated backend emailing is currently not configured. Please email directly to ir6595187@gmail.com or copy the email using the button provided.",
+      gmailOpenedNotice: "Gmail opened in a new tab with your message prefilled. Press Send in Gmail to deliver it to ir6595187@gmail.com.",
+      openGmail: "Open Gmail",
     },
     cmdPalette: {
       placeholder: "Type a command or search sections...",

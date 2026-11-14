@@ -2,6 +2,7 @@ import { ArrowUp, Mail } from 'lucide-react';
 import { GithubIcon, InstagramIcon, LinkedinIcon } from '../components/Icons';
 import { personalInfo, navItems } from '../data/portfolioData';
 import { usePortfolio } from '../context/PortfolioContext';
+import { gmailComposeUrl } from '../utils/gmail';
 
 interface FooterProps {
   isDark: boolean;
@@ -126,7 +127,9 @@ export default function Footer({ isDark }: FooterProps) {
             </a>
 
             <a
-              href={`mailto:${personalInfo.email}`}
+              href={gmailComposeUrl('Inquiry via Portfolio', '')}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Email"
               className={`w-9 h-9 rounded-xl flex items-center justify-center border transition-all hover:border-[#386BFF] hover:text-[#386BFF] ${
                 isDark

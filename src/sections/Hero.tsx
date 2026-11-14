@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Download, Mail, Sparkles, CreditCard } from 'lucide-react';
 import { personalInfo, heroTypingTexts } from '../data/portfolioData';
 import { usePortfolio } from '../context/PortfolioContext';
+import { gmailComposeUrl } from '../utils/gmail';
 import { GithubIcon, InstagramIcon, LinkedinIcon } from '../components/Icons';
 import ThreeHeroScene from '../components/ThreeHeroScene';
 import MagneticButton from '../components/MagneticButton';
@@ -119,18 +120,9 @@ export default function Hero({ isDark }: HeroProps) {
             </div>
 
             {/* Headline Tagline */}
-            <p className="text-sm sm:text-base font-semibold text-[#28D6E8] mb-3 flex items-center gap-2">
+            <p className="text-sm sm:text-base font-semibold text-[#28D6E8] mb-5 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-[#386BFF] flex-shrink-0" />
               <span>"{personalInfo.tagline}"</span>
-            </p>
-
-            {/* Short Narrative Description */}
-            <p
-              className={`text-xs sm:text-sm md:text-base leading-relaxed max-w-xl mb-5 text-center lg:text-left ${
-                isDark ? 'text-[#9AA6C0]' : 'text-[#4B556D]'
-              }`}
-            >
-              {t.hero.description}
             </p>
 
             {/* Internship Status Pill */}
@@ -252,7 +244,9 @@ export default function Hero({ isDark }: HeroProps) {
                 <LinkedinIcon className="w-4 h-4" />
               </a>
               <a
-                href={`mailto:${personalInfo.email}`}
+                href={gmailComposeUrl('Inquiry via Portfolio', '')}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Direct Email"
                 className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-all ${
                   isDark

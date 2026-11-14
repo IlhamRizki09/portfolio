@@ -73,7 +73,7 @@ export default function Navbar({ activeSection, isScrolled }: NavbarProps) {
                 </span>
               </span>
               <span className="text-[10px] font-bold text-[#386BFF] tracking-wider uppercase">
-                Portfolio
+                {lang === 'id' ? 'Portofolio' : 'Portfolio'}
               </span>
             </div>
           </a>
