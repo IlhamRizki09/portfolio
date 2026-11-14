@@ -2,7 +2,7 @@
 
 Interactive 3D portfolio of **Muhammad Ilham Rizki**, an Informatics student at Universitas PGRI Semarang and aspiring web developer.
 
-**Live:** https://ilhamrizki09.github.io/portfolio/ · https://mir-portfolio-puce.vercel.app/
+**Live:** https://ilhamrizki09.github.io/portfolio/ · https://ilham-pages.vercel.app/
 
 Built with Vite, React, TypeScript, Tailwind CSS, Framer Motion, and a Three.js hero scene.
 
@@ -45,7 +45,7 @@ The site is deployed to two targets from the same codebase:
 | Target | URL | Trigger |
 | --- | --- | --- |
 | GitHub Pages | https://ilhamrizki09.github.io/portfolio/ | Push to `main` via `.github/workflows/deploy.yml` |
-| Vercel | https://mir-portfolio-puce.vercel.app/ | Push to `main` (Git integration) or `vercel deploy --prod` |
+| Vercel | https://ilham-pages.vercel.app/ | Push to `main` (Git integration) or `vercel deploy --prod` |
 
 `vite.config.ts` uses `/portfolio/` for GitHub Pages builds and `/` for Vercel builds (detected via the `VERCEL` environment variable). OG/Twitter metadata is driven by `VITE_SITE_URL`, with a default in `.env` for Pages and a production override in Vercel.
 
