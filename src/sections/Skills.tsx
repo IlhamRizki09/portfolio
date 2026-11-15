@@ -36,13 +36,32 @@ export default function Skills({ isDark }: SkillsProps) {
     { id: 'tools', label: 'Tools & Networking', icon: Wrench },
   ];
 
-  // Aggregate or filter skills
-  const allSkills: SkillItem[] = skillCategories.flatMap((cat) => cat.skills);
+  // Aggregate or filter skills (deduplicated so shared stack items appear once)
+  const seen = new Set<string>();
+  const allSkills: SkillItem[] = skillCategories
+    .flatMap((cat) => cat.skills)
+    .filter((skill) => {
+      const key = skill.name.toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
 
   const displayedSkills =
     activeCategory === 'all'
       ? allSkills
       : skillCategories.find((cat) => cat.id === activeCategory)?.skills || [];
+
+  const categoryLabel = (category: string) => {
+    if (category === 'core-cv') return 'Verified CV';
+    const labels: Record<string, string> = {
+      languages: 'Programming',
+      frontend: 'Frontend',
+      'backend-db': 'Backend & DB',
+      tools: 'Tools',
+    };
+    return labels[category] ?? category;
+  };
 
   const getSkillIcon = (iconName: string) => {
     switch (iconName) {
@@ -68,7 +87,7 @@ export default function Skills({ isDark }: SkillsProps) {
         isDark ? 'bg-[#0E162B]' : 'bg-[#FFFFFF]'
       }`}
     >
-      <div className="container-custom">
+      <div className="container-custom overflow-x-clip">
         <SectionHeading
           label={t.skills.label}
           title={t.skills.title}
@@ -85,7 +104,7 @@ export default function Skills({ isDark }: SkillsProps) {
               <button
                 key={tab.id}
                 onClick={() => setActiveCategory(tab.id)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-bold border transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+                className={`shrink-0 whitespace-nowrap px-3.5 py-2 rounded-xl text-xs font-bold border transition-all duration-200 cursor-pointer flex items-center gap-2 ${
                   isActive
                     ? 'bg-gradient-to-r from-[#386BFF] to-[#7855E8] border-transparent text-white shadow-md shadow-[#386BFF]/25'
                     : isDark
@@ -110,7 +129,7 @@ export default function Skills({ isDark }: SkillsProps) {
         ) : (
           <motion.div
             layout
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5 sm:gap-4"
+            className="flex flex-wrap justify-center gap-4"
           >
             {displayedSkills.map((skill, index) => {
               const IconComp = getSkillIcon(skill.icon);
@@ -120,23 +139,24 @@ export default function Skills({ isDark }: SkillsProps) {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.04 }}
+                  className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.667rem)] md:w-[calc(25%-0.75rem)] xl:w-[calc(16.6667%-0.834rem)]"
                 >
-                  <Card3DTilt isDark={isDark} className="p-4 text-center flex flex-col items-center justify-center group">
+                  <Card3DTilt isDark={isDark} className="p-4 h-full text-center flex flex-col items-center group">
                     {/* Skill Tech Icon / Monogram */}
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-2.5 bg-gradient-to-tr from-[#386BFF]/15 to-[#28D6E8]/10 border border-[#386BFF]/25 text-[#28D6E8] group-hover:border-[#28D6E8]/60 group-hover:scale-110 transition-all duration-300 shadow-sm">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 bg-gradient-to-tr from-[#386BFF]/15 to-[#28D6E8]/10 border border-[#386BFF]/25 text-[#28D6E8] group-hover:border-[#28D6E8]/60 group-hover:scale-110 transition-all duration-300 shadow-sm">
                       <IconComp className="w-5 h-5 text-[#386BFF] group-hover:text-[#28D6E8]" />
                     </div>
 
                     <h3
-                      className={`text-xs sm:text-sm font-bold tracking-tight mb-0.5 ${
+                      className={`text-xs sm:text-sm font-bold tracking-tight leading-snug min-h-[2.5rem] flex items-center justify-center text-balance ${
                         isDark ? 'text-[#F5F7FF]' : 'text-[#080D1C]'
                       }`}
                     >
                       {skill.name}
                     </h3>
 
-                    <span className="text-[10px] font-semibold text-[#9AA6C0] uppercase tracking-wider">
-                      {skill.category === 'core-cv' ? 'Verified CV' : skill.category}
+                    <span className="mt-auto pt-1 text-[10px] font-semibold text-[#9AA6C0] uppercase tracking-wider">
+                      {categoryLabel(skill.category)}
                     </span>
                   </Card3DTilt>
                 </motion.div>
