@@ -59,7 +59,7 @@ export default function Experience({ isDark }: ExperienceProps) {
           align="left"
         />
 
-        <div className="grid items-start gap-4 md:grid-cols-2">
+        <div className="grid items-stretch gap-4 md:auto-rows-fr md:grid-cols-2">
           {experiences.map((exp, index) => {
             const Icon =
               exp.roleType === 'committee'
@@ -75,7 +75,7 @@ export default function Experience({ isDark }: ExperienceProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.4, delay: (index % 2) * 0.06 }}
-                className="glass-card flex gap-4 p-4 sm:p-5"
+                className="glass-card flex h-full min-w-0 gap-4 p-4 sm:p-5"
               >
                 <span
                   className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border ${
@@ -87,7 +87,7 @@ export default function Experience({ isDark }: ExperienceProps) {
                   <Icon className="h-5 w-5" />
                 </span>
 
-                <div className="min-w-0">
+                <div className="flex min-w-0 flex-1 flex-col">
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                     <h3
                       className={`text-[0.98rem] font-bold leading-snug sm:text-[1.05rem] ${
