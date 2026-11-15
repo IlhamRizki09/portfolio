@@ -48,34 +48,24 @@ export default function Navbar({ activeSection, isScrolled }: NavbarProps) {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Brand: MIR. */}
+          {/* Brand */}
           <a
             href="#home"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick('#home');
             }}
-            className="flex items-center gap-3 group cursor-pointer"
+            className="flex flex-col justify-center leading-tight min-w-0 cursor-pointer"
           >
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl p-[1.5px] bg-gradient-to-tr from-[#386BFF] via-[#7855E8] to-[#28D6E8] shadow-md shadow-[#386BFF]/25 group-hover:shadow-[#28D6E8]/40 transition-all duration-300">
-              <div
-                className={`w-full h-full rounded-[10px] flex items-center justify-center font-black text-sm tracking-tight transition-colors ${
-                  isDark ? 'bg-[#080D1C] text-[#F5F7FF]' : 'bg-white text-[#080D1C]'
-                }`}
-              >
-                MIR<span className="text-[#28D6E8]">.</span>
-              </div>
-            </div>
-            <div className="hidden sm:flex flex-col leading-tight">
-              <span className="text-sm font-black tracking-tight">
-                <span className={isDark ? 'text-[#F5F7FF]' : 'text-[#080D1C]'}>
-                  MUHAMMAD ILHAM RIZKI
-                </span>
+            <span className="text-[13px] font-black tracking-tight truncate">
+              <span className={isDark ? 'text-[#F5F7FF]' : 'text-[#080D1C]'}>
+                <span className="min-[360px]:hidden">ILHAM RIZKI</span>
+                <span className="hidden min-[360px]:inline">MUHAMMAD ILHAM RIZKI</span>
               </span>
-              <span className="text-[10px] font-bold text-[#386BFF] tracking-wider uppercase">
-                {lang === 'id' ? 'Portofolio' : 'Portfolio'}
-              </span>
-            </div>
+            </span>
+            <span className="text-[9px] sm:text-[10px] font-bold text-[#386BFF] tracking-[0.2em] uppercase mt-0.5">
+              {lang === 'id' ? 'Portofolio' : 'Portfolio'}
+            </span>
           </a>
 
           {/* Desktop Navigation Links */}

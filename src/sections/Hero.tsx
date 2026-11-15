@@ -117,7 +117,7 @@ export default function Hero({ isDark }: HeroProps) {
             </div>
 
             {/* Primary Actions */}
-            <div className="grid grid-cols-2 gap-3 w-full sm:max-w-[22rem] mb-3">
+            <div className="grid grid-cols-1 min-[360px]:grid-cols-2 gap-2.5 sm:gap-3 w-full sm:max-w-[22rem] mb-3">
               <MagneticButton
                 onClick={() => handleScrollTo('#about')}
                 className="h-12 px-4 rounded-xl font-bold text-xs sm:text-sm bg-gradient-to-r from-[#386BFF] to-[#7855E8] hover:from-[#2E5BE5] hover:to-[#6A44DD] text-white shadow-lg shadow-[#386BFF]/30 hover:shadow-[#386BFF]/50 inline-flex items-center justify-center gap-2 cursor-pointer transition-all"
@@ -145,7 +145,7 @@ export default function Hero({ isDark }: HeroProps) {
             <div className="flex items-center justify-center lg:justify-start gap-2 w-full">
               <button
                 onClick={openCv}
-                className={`h-10 flex-1 sm:flex-none px-2 sm:px-4 rounded-lg font-bold text-[11px] sm:text-xs border transition-all inline-flex items-center justify-center gap-2 cursor-pointer ${
+                className={`h-10 flex-1 sm:flex-none px-1.5 min-[360px]:px-2 sm:px-4 rounded-lg font-bold text-[10px] min-[360px]:text-[11px] sm:text-xs border transition-all inline-flex items-center justify-center gap-2 cursor-pointer ${
                   isDark
                     ? 'bg-white/[0.03] hover:bg-white/[0.07] border-white/10 text-[#9AA6C0] hover:text-white'
                     : 'bg-white hover:bg-blue-50 border-gray-200 text-[#4B556D] hover:border-blue-300 hover:text-[#080D1C]'
@@ -158,7 +158,7 @@ export default function Hero({ isDark }: HeroProps) {
 
               <button
                 onClick={() => handleScrollTo('#contact')}
-                className={`h-10 flex-1 sm:flex-none px-2 sm:px-4 rounded-lg font-bold text-[11px] sm:text-xs border transition-all inline-flex items-center justify-center gap-2 cursor-pointer ${
+                className={`h-10 flex-1 sm:flex-none px-1.5 min-[360px]:px-2 sm:px-4 rounded-lg font-bold text-[10px] min-[360px]:text-[11px] sm:text-xs border transition-all inline-flex items-center justify-center gap-2 cursor-pointer ${
                   isDark
                     ? 'bg-white/[0.03] hover:bg-white/[0.07] border-white/10 text-[#9AA6C0] hover:text-white'
                     : 'bg-white hover:bg-blue-50 border-gray-200 text-[#4B556D] hover:border-blue-300 hover:text-[#080D1C]'
@@ -170,7 +170,7 @@ export default function Hero({ isDark }: HeroProps) {
 
               <button
                 onClick={openCard}
-                className={`h-10 flex-1 sm:flex-none px-2 sm:px-4 rounded-lg font-bold text-[11px] sm:text-xs border transition-all inline-flex items-center justify-center gap-2 cursor-pointer ${
+                className={`h-10 flex-1 sm:flex-none px-1.5 min-[360px]:px-2 sm:px-4 rounded-lg font-bold text-[10px] min-[360px]:text-[11px] sm:text-xs border transition-all inline-flex items-center justify-center gap-2 cursor-pointer ${
                   isDark
                     ? 'bg-white/[0.03] hover:bg-white/[0.07] border-white/10 text-[#9AA6C0] hover:text-white'
                     : 'bg-white hover:bg-blue-50 border-gray-200 text-[#4B556D] hover:border-blue-300 hover:text-[#080D1C]'
