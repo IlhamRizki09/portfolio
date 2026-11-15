@@ -45,7 +45,7 @@ export default function MagneticButton({
         transform: `translate3d(${offset.x}px, ${offset.y}px, 0)`,
         transition: 'transform 0.15s ease-out',
       }}
-      className="inline-block"
+      className="inline-flex items-center justify-center gap-2"
     >
       {children}
     </div>

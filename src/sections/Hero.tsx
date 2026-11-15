@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, Mail, Sparkles, CreditCard } from 'lucide-react';
+import { ArrowDown, Download, Mail, CreditCard, Eye } from 'lucide-react';
 import { personalInfo, heroTypingTexts } from '../data/portfolioData';
 import { usePortfolio } from '../context/PortfolioContext';
 import { gmailComposeUrl } from '../utils/gmail';
@@ -57,7 +57,7 @@ export default function Hero({ isDark }: HeroProps) {
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] flex items-center justify-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden"
+      className="relative min-h-[88vh] flex items-center justify-center pt-24 sm:pt-28 lg:pt-32 pb-14 sm:pb-16 overflow-hidden"
     >
       {/* Dynamic Ambient Glow Meshes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -75,23 +75,8 @@ export default function Hero({ isDark }: HeroProps) {
             transition={{ duration: 0.55 }}
             className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
           >
-            {/* Small Status Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1, duration: 0.4 }}
-              className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold mb-4 border ${
-                isDark
-                  ? 'bg-[#142B59]/50 border-[#386BFF]/35 text-[#28D6E8] shadow-sm shadow-[#386BFF]/20'
-                  : 'bg-blue-50 border-blue-200 text-[#2E5BE5]'
-              }`}
-            >
-              <span className="w-2 h-2 rounded-full bg-[#28D6E8] animate-pulse" />
-              <span>{t.hero.badge}</span>
-            </motion.div>
-
             {/* Greeting */}
-            <p className="text-xs sm:text-sm font-extrabold tracking-[0.22em] uppercase text-[#386BFF] mb-1.5">
+            <p className="text-xs sm:text-sm font-extrabold tracking-[0.22em] uppercase text-[#386BFF] mb-2">
               {t.hero.greeting}
             </p>
 
@@ -108,7 +93,7 @@ export default function Hero({ isDark }: HeroProps) {
             </h1>
 
             {/* Role Typing Text */}
-            <div className="h-7 sm:h-8 flex items-center mb-3">
+            <div className="h-7 sm:h-8 flex items-center mb-4">
               <span
                 className={`text-base sm:text-lg md:text-xl font-semibold ${
                   isDark ? 'text-[#9AA6C0]' : 'text-[#4B556D]'
@@ -119,15 +104,9 @@ export default function Hero({ isDark }: HeroProps) {
               <span className="animate-pulse ml-1 text-[#28D6E8] font-black text-xl">|</span>
             </div>
 
-            {/* Headline Tagline */}
-            <p className="text-sm sm:text-base font-semibold text-[#28D6E8] mb-5 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#386BFF] flex-shrink-0" />
-              <span>"{personalInfo.tagline}"</span>
-            </p>
-
             {/* Internship Status Pill */}
             <div
-              className={`inline-flex items-center gap-2 px-3 py-1 rounded-xl text-xs font-semibold mb-6 border ${
+              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-7 border ${
                 isDark
                   ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
                   : 'bg-emerald-50 border-emerald-200 text-emerald-700'
@@ -137,72 +116,74 @@ export default function Hero({ isDark }: HeroProps) {
               <span>{t.hero.status}</span>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 w-full mb-6">
+            {/* Primary Actions */}
+            <div className="grid grid-cols-2 gap-3 w-full sm:max-w-[22rem] mb-3">
               <MagneticButton
                 onClick={() => handleScrollTo('#about')}
-                className="h-11 sm:h-12 px-6 rounded-xl font-bold text-xs sm:text-sm bg-gradient-to-r from-[#386BFF] to-[#7855E8] hover:from-[#2E5BE5] hover:to-[#6A44DD] text-white shadow-lg shadow-[#386BFF]/30 hover:shadow-[#386BFF]/50 inline-flex items-center gap-2 cursor-pointer transition-all"
+                className="h-12 px-4 rounded-xl font-bold text-xs sm:text-sm bg-gradient-to-r from-[#386BFF] to-[#7855E8] hover:from-[#2E5BE5] hover:to-[#6A44DD] text-white shadow-lg shadow-[#386BFF]/30 hover:shadow-[#386BFF]/50 inline-flex items-center justify-center gap-2 cursor-pointer transition-all"
               >
                 <span>{t.hero.exploreBtn}</span>
                 <ArrowDown className="w-4 h-4" />
               </MagneticButton>
 
-              <div className="flex items-center gap-1.5">
-                <a
-                  href={personalInfo.cvPath}
-                  download={personalInfo.cvFileName}
-                  className={`h-11 sm:h-12 px-4 rounded-xl font-bold text-xs sm:text-sm border transition-all inline-flex items-center gap-2 cursor-pointer ${
-                    isDark
-                      ? 'bg-[#0E162B] hover:bg-[#142B59] border-[#386BFF]/30 text-[#F5F7FF] hover:border-[#28D6E8]/60 shadow-md'
-                      : 'bg-white hover:bg-blue-50 border-blue-200 text-[#080D1C] shadow-sm'
-                  }`}
-                  title="Download CV Langsung"
-                >
-                  <Download className="w-4 h-4 text-[#386BFF]" />
-                  <span>{t.hero.downloadCvBtn}</span>
-                </a>
-
-                <button
-                  onClick={openCv}
-                  className={`h-11 sm:h-12 px-3 rounded-xl font-bold text-xs border transition-all inline-flex items-center cursor-pointer ${
-                    isDark
-                      ? 'bg-[#0E162B] hover:bg-[#142B59] border-[#386BFF]/30 text-[#28D6E8]'
-                      : 'bg-white hover:bg-blue-50 border-blue-200 text-[#386BFF]'
-                  }`}
-                  title="Preview CV Online"
-                >
-                  <span>Preview</span>
-                </button>
-              </div>
-
-              <button
-                onClick={() => handleScrollTo('#contact')}
-                className={`h-11 sm:h-12 px-5 rounded-xl font-bold text-xs sm:text-sm border transition-all inline-flex items-center gap-2 cursor-pointer ${
+              <a
+                href={personalInfo.cvPath}
+                download={personalInfo.cvFileName}
+                className={`h-12 px-4 rounded-xl font-bold text-xs sm:text-sm border transition-all inline-flex items-center justify-center gap-2 cursor-pointer ${
                   isDark
                     ? 'bg-[#0E162B] hover:bg-[#142B59] border-[#386BFF]/30 text-[#F5F7FF] hover:border-[#28D6E8]/60 shadow-md'
                     : 'bg-white hover:bg-blue-50 border-blue-200 text-[#080D1C] shadow-sm'
                 }`}
+                title="Download CV Langsung"
               >
-                <Mail className="w-4 h-4 text-[#28D6E8]" />
+                <Download className="w-4 h-4 text-[#386BFF]" />
+                <span>{t.hero.downloadCvBtn}</span>
+              </a>
+            </div>
+
+            {/* Secondary Actions */}
+            <div className="flex items-center justify-center lg:justify-start gap-2 w-full">
+              <button
+                onClick={openCv}
+                className={`h-10 flex-1 sm:flex-none px-2 sm:px-4 rounded-lg font-bold text-[11px] sm:text-xs border transition-all inline-flex items-center justify-center gap-2 cursor-pointer ${
+                  isDark
+                    ? 'bg-white/[0.03] hover:bg-white/[0.07] border-white/10 text-[#9AA6C0] hover:text-white'
+                    : 'bg-white hover:bg-blue-50 border-gray-200 text-[#4B556D] hover:border-blue-300 hover:text-[#080D1C]'
+                }`}
+                title="Preview CV Online"
+              >
+                <Eye className="hidden sm:block w-3.5 h-3.5 text-[#386BFF]" />
+                <span>Preview</span>
+              </button>
+
+              <button
+                onClick={() => handleScrollTo('#contact')}
+                className={`h-10 flex-1 sm:flex-none px-2 sm:px-4 rounded-lg font-bold text-[11px] sm:text-xs border transition-all inline-flex items-center justify-center gap-2 cursor-pointer ${
+                  isDark
+                    ? 'bg-white/[0.03] hover:bg-white/[0.07] border-white/10 text-[#9AA6C0] hover:text-white'
+                    : 'bg-white hover:bg-blue-50 border-gray-200 text-[#4B556D] hover:border-blue-300 hover:text-[#080D1C]'
+                }`}
+              >
+                <Mail className="hidden sm:block w-3.5 h-3.5 text-[#28D6E8]" />
                 <span>{t.hero.contactBtn}</span>
               </button>
 
               <button
                 onClick={openCard}
-                className={`h-11 sm:h-12 px-4 rounded-xl font-bold text-xs sm:text-sm border transition-all inline-flex items-center gap-1.5 cursor-pointer ${
+                className={`h-10 flex-1 sm:flex-none px-2 sm:px-4 rounded-lg font-bold text-[11px] sm:text-xs border transition-all inline-flex items-center justify-center gap-2 cursor-pointer ${
                   isDark
-                    ? 'bg-transparent hover:bg-white/5 border-white/10 text-[#9AA6C0] hover:text-white'
-                    : 'bg-transparent hover:bg-black/5 border-gray-200 text-[#4B556D] hover:text-black'
+                    ? 'bg-white/[0.03] hover:bg-white/[0.07] border-white/10 text-[#9AA6C0] hover:text-white'
+                    : 'bg-white hover:bg-blue-50 border-gray-200 text-[#4B556D] hover:border-blue-300 hover:text-[#080D1C]'
                 }`}
                 title={t.hero.businessCardBtn}
               >
-                <CreditCard className="w-4 h-4 text-[#386BFF]" />
-                <span className="hidden sm:inline">{t.hero.businessCardBtn}</span>
+                <CreditCard className="hidden sm:block w-3.5 h-3.5 text-[#7855E8]" />
+                <span>{t.hero.businessCardBtn}</span>
               </button>
             </div>
 
             {/* Social Media Quick Links */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 mt-6">
               <span className="text-xs font-semibold text-[#9AA6C0]">Connect:</span>
               <a
                 href={personalInfo.github}
@@ -267,7 +248,7 @@ export default function Hero({ isDark }: HeroProps) {
             className="lg:col-span-5 flex flex-col items-center justify-center relative"
           >
             {/* 3D Canvas Container */}
-            <div className="w-full relative rounded-3xl overflow-hidden border border-[#386BFF]/25 bg-gradient-to-b from-[#0E162B]/60 to-[#080D1C]/80 backdrop-blur-md shadow-2xl shadow-[#386BFF]/10">
+            <div className="w-full relative rounded-3xl overflow-hidden border border-[#386BFF]/25 bg-gradient-to-b from-[#0E162B] to-[#080D1C] shadow-2xl shadow-[#386BFF]/10">
               {/* Interactive 3D Canvas */}
               <ThreeHeroScene isDark={isDark} />
 

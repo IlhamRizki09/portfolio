@@ -15,10 +15,8 @@ export interface Translations {
     businessCard: string;
   };
   hero: {
-    badge: string;
     greeting: string;
     role: string;
-    headline: string;
     status: string;
     exploreBtn: string;
     downloadCvBtn: string;
@@ -205,10 +203,8 @@ export const translations: Record<Language, Translations> = {
       businessCard: "Kartu Nama Digital",
     },
     hero: {
-      badge: "Mahasiswa Informatika @ UPGRIS",
       greeting: "HALO, SAYA",
       role: "Informatics Student & Aspiring Web Developer",
-      headline: "Building Ideas Into Digital Experiences.",
       status: "Terbuka untuk Peluang Magang (Internship)",
       exploreBtn: "Explore Portfolio",
       downloadCvBtn: "Download CV",
@@ -393,10 +389,8 @@ export const translations: Record<Language, Translations> = {
       businessCard: "Digital Card",
     },
     hero: {
-      badge: "Informatics Student @ UPGRIS",
       greeting: "HELLO, I AM",
       role: "Informatics Student & Aspiring Web Developer",
-      headline: "Building Ideas Into Digital Experiences.",
       status: "Open to Internship Opportunities",
       exploreBtn: "Explore Portfolio",
       downloadCvBtn: "Download CV",
