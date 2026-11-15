@@ -96,7 +96,7 @@ export default function Skills({ isDark }: SkillsProps) {
         />
 
         {/* Category Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10 max-w-3xl mx-auto">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-10 max-w-4xl mx-auto">
           {filterTabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeCategory === tab.id;
