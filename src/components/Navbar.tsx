@@ -47,58 +47,40 @@ export default function Navbar({ activeSection, isScrolled }: NavbarProps) {
       }`}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Brand */}
-          <a
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick('#home');
-            }}
-            className="flex flex-col justify-center leading-tight min-w-0 cursor-pointer"
-          >
-            <span className="text-[13px] font-black tracking-tight truncate">
-              <span className={isDark ? 'text-[#F5F7FF]' : 'text-[#080D1C]'}>
-                <span className="min-[360px]:hidden">ILHAM RIZKI</span>
-                <span className="hidden min-[360px]:inline">MUHAMMAD ILHAM RIZKI</span>
-              </span>
-            </span>
-            <span className="text-[9px] sm:text-[10px] font-bold text-[#386BFF] tracking-[0.2em] uppercase mt-0.5">
-              {lang === 'id' ? 'Portofolio' : 'Portfolio'}
-            </span>
-          </a>
+        <div className="flex items-center justify-between gap-3 h-16 sm:h-20">
+          {/* Theme switcher — left, alone */}
+          <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1">
-            {navItems.map((item) => {
-              const label = lang === 'id' ? item.labelId : item.labelEn;
-              const isActive = activeSection === item.id;
-              return (
-                <a
-                  key={item.id}
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(item.href);
-                  }}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold tracking-normal border transition-all duration-200 cursor-pointer ${
-                    isActive
-                      ? isDark
-                        ? 'bg-[#386BFF]/20 border-[#386BFF]/50 text-[#28D6E8] shadow-sm shadow-[#386BFF]/20'
-                        : 'bg-[#386BFF]/10 border-[#386BFF]/40 text-[#2E5BE5]'
-                      : isDark
-                      ? 'bg-transparent border-transparent text-[#9AA6C0] hover:text-[#F5F7FF] hover:bg-white/5'
-                      : 'bg-transparent border-transparent text-[#4B556D] hover:text-[#080D1C] hover:bg-black/5'
-                  }`}
-                >
-                  {label}
-                </a>
-              );
-            })}
-          </nav>
+          <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+            {/* Desktop Navigation Links */}
+            <nav className="hidden xl:flex items-center gap-1">
+              {navItems.map((item) => {
+                const label = lang === 'id' ? item.labelId : item.labelEn;
+                const isActive = activeSection === item.id;
+                return (
+                  <a
+                    key={item.id}
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(item.href);
+                    }}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold tracking-normal border transition-all duration-200 cursor-pointer ${
+                      isActive
+                        ? isDark
+                          ? 'bg-[#386BFF]/20 border-[#386BFF]/50 text-[#28D6E8] shadow-sm shadow-[#386BFF]/20'
+                          : 'bg-[#386BFF]/10 border-[#386BFF]/40 text-[#2E5BE5]'
+                        : isDark
+                        ? 'bg-transparent border-transparent text-[#9AA6C0] hover:text-[#F5F7FF] hover:bg-white/5'
+                        : 'bg-transparent border-transparent text-[#4B556D] hover:text-[#080D1C] hover:bg-black/5'
+                    }`}
+                  >
+                    {label}
+                  </a>
+                );
+              })}
+            </nav>
 
-          {/* Action Center: Recruiter Mode, Cmd, Lang, Theme, Mobile toggle */}
-          <div className="flex items-center gap-2 sm:gap-2.5">
             {/* Recruiter Mode Toggle Button */}
             <button
               onClick={toggleRecruiterMode}
@@ -133,9 +115,6 @@ export default function Navbar({ activeSection, isScrolled }: NavbarProps) {
 
             {/* Language Switcher */}
             <LanguageToggle />
-
-            {/* Theme Switcher */}
-            <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
 
             {/* Hamburger Button for Mobile/Tablet */}
             <button
