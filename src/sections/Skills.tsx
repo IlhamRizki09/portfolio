@@ -141,23 +141,25 @@ export default function Skills({ isDark }: SkillsProps) {
                   transition={{ duration: 0.3, delay: index * 0.04 }}
                   className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.667rem)] md:w-[calc(25%-0.75rem)] xl:w-[calc(16.6667%-0.834rem)]"
                 >
-                  <Card3DTilt isDark={isDark} className="p-4 h-full text-center flex flex-col items-center group">
-                    {/* Skill Tech Icon / Monogram */}
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 bg-gradient-to-tr from-[#386BFF]/15 to-[#28D6E8]/10 border border-[#386BFF]/25 text-[#28D6E8] group-hover:border-[#28D6E8]/60 group-hover:scale-110 transition-all duration-300 shadow-sm">
-                      <IconComp className="w-5 h-5 text-[#386BFF] group-hover:text-[#28D6E8]" />
+                  <Card3DTilt isDark={isDark} className="p-4 h-full group">
+                    <div className="flex h-full flex-col items-center text-center">
+                      {/* Skill Tech Icon / Monogram */}
+                      <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 bg-gradient-to-tr from-[#386BFF]/15 to-[#28D6E8]/10 border border-[#386BFF]/25 text-[#28D6E8] group-hover:border-[#28D6E8]/60 group-hover:scale-110 transition-all duration-300 shadow-sm">
+                        <IconComp className="w-5 h-5 text-[#386BFF] group-hover:text-[#28D6E8]" />
+                      </div>
+
+                      <h3
+                        className={`text-xs sm:text-sm font-bold tracking-tight leading-snug min-h-[2.5rem] flex items-center justify-center text-balance ${
+                          isDark ? 'text-[#F5F7FF]' : 'text-[#080D1C]'
+                        }`}
+                      >
+                        {skill.name}
+                      </h3>
+
+                      <span className="mt-auto pt-1 text-[10px] font-semibold text-[#9AA6C0] uppercase tracking-wider">
+                        {categoryLabel(skill.category)}
+                      </span>
                     </div>
-
-                    <h3
-                      className={`text-xs sm:text-sm font-bold tracking-tight leading-snug min-h-[2.5rem] flex items-center justify-center text-balance ${
-                        isDark ? 'text-[#F5F7FF]' : 'text-[#080D1C]'
-                      }`}
-                    >
-                      {skill.name}
-                    </h3>
-
-                    <span className="mt-auto pt-1 text-[10px] font-semibold text-[#9AA6C0] uppercase tracking-wider">
-                      {categoryLabel(skill.category)}
-                    </span>
                   </Card3DTilt>
                 </motion.div>
               );
