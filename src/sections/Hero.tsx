@@ -78,7 +78,7 @@ export default function Hero({ isDark }: HeroProps) {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="flex flex-col items-center text-center lg:-translate-y-12 lg:items-start lg:text-left xl:-translate-y-16"
+            className="flex flex-col items-center text-center lg:items-start lg:text-left"
           >
             <h1 className="hero-gradient-text m-0 text-[clamp(2.2rem,6vw,4.8rem)] font-extrabold leading-[1.05] tracking-[-0.025em]">
               Welcome to
@@ -203,7 +203,7 @@ export default function Hero({ isDark }: HeroProps) {
             </div>
           </motion.div>
 
-          <LanyardCard isDark={isDark} idPrefix="desktop-lanyard" className="hidden lg:flex lg:-translate-y-16 lg:justify-end lg:pr-4 xl:-translate-y-20 xl:pr-10" />
+          <LanyardCard isDark={isDark} idPrefix="desktop-lanyard" className="hidden lg:flex lg:-translate-y-52 lg:justify-end lg:pr-4 xl:-translate-y-56 xl:pr-10" />
         </div>
       </div>
     </section>
