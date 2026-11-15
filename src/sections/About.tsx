@@ -131,25 +131,35 @@ LinkedIn: ${personalInfo.linkedin}`;
             transition={{ duration: 0.6, delay: 0.1 }}
             className="relative flex items-end justify-center"
           >
-            <div className="absolute bottom-[6%] left-[6%] right-[6%] h-[55%] rounded-full bg-[radial-gradient(at_50%_35%,rgba(234,38,64,0.28),transparent_45%),radial-gradient(at_48%_68%,rgba(30,112,226,0.34),transparent_65%)] blur-[38px]" />
-            <span className="absolute left-1/2 top-[10%] aspect-square w-[78%] -translate-x-1/2 rounded-full border border-[#6c97d7]/15" />
-            <span className="absolute left-1/2 top-[22%] aspect-square w-[58%] -translate-x-1/2 rounded-full border border-[#e53d51]/15" />
+            {/* Ambient backdrop glow */}
+            <div className="absolute bottom-[6%] left-[6%] right-[6%] h-[55%] rounded-full bg-[radial-gradient(at_50%_35%,rgba(44,103,237,0.32),transparent_50%),radial-gradient(at_48%_68%,rgba(56,189,248,0.25),transparent_65%)] blur-[38px]" />
+            <span className="absolute left-1/2 top-[8%] aspect-square w-[82%] -translate-x-1/2 rounded-full border border-[#6c97d7]/15" />
+            <span className="absolute left-1/2 top-[20%] aspect-square w-[62%] -translate-x-1/2 rounded-full border border-[#6c97d7]/15" />
 
-            <div className="relative z-10 w-[230px] overflow-hidden rounded-[26px] border border-white/15 bg-[#0b1020] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)] sm:w-[260px] lg:w-[280px]">
+            <div
+              className={`relative z-10 w-[230px] overflow-hidden rounded-[26px] border shadow-[0_30px_80px_-30px_rgba(0,0,0,0.85)] sm:w-[260px] lg:w-[280px] ${
+                isDark
+                  ? 'border-white/15 bg-gradient-to-b from-[#111827] via-[#0b1020] to-[#05070d]'
+                  : 'border-blue-200/80 bg-gradient-to-b from-slate-900 via-[#0b1224] to-[#05070d] shadow-[0_25px_60px_-20px_rgba(37,99,235,0.3)]'
+              }`}
+            >
               <div className="relative aspect-[3/4]">
                 {!imgError ? (
                   <img
-                    src={personalInfo.profileImagePath}
+                    src={personalInfo.profileCutoutPath}
                     alt={personalInfo.name}
-                    className="h-full w-full object-cover object-top"
+                    className="h-full w-full object-contain object-top pt-2"
                     onError={() => setImgError(true)}
+                    width="768"
+                    height="1024"
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center bg-[#2c67ed]/15 font-mono text-2xl font-bold text-[#38bdf8]">
                     MIR
                   </div>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#05070d] via-[#05070d]/10 to-transparent" />
+                {/* Subtle depth gradient at bottom */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#05070d] via-[#05070d]/20 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-4">
                   <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.24em] text-[#60a5fa]">
                     Verified Profile
@@ -162,7 +172,7 @@ LinkedIn: ${personalInfo.linkedin}`;
               </div>
             </div>
 
-            <span className="absolute right-[16%] top-[58%] h-[7px] w-[7px] rounded-full bg-[#39e5d0] shadow-[0_0_14px_3px_rgba(57,229,208,0.45)]" />
+            <span className="absolute right-[14%] top-[54%] h-[7px] w-[7px] rounded-full bg-[#39e5d0] shadow-[0_0_14px_3px_rgba(57,229,208,0.45)]" />
           </motion.div>
 
           {/* Bio */}

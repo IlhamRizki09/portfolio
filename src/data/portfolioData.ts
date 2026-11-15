@@ -20,6 +20,7 @@ export interface PersonalInfo {
   cvFileName: string;
   cvPath: string;
   profileImagePath: string;
+  profileCutoutPath: string;
 }
 
 export const personalInfo: PersonalInfo = {
@@ -42,6 +43,7 @@ export const personalInfo: PersonalInfo = {
   cvFileName: "CV_Muhammad_Ilham_Rizki.pdf",
   cvPath: assetUrl("/assets/cv/CV_Muhammad_Ilham_Rizki.pdf"),
   profileImagePath: assetUrl("/assets/images/profile.jpg"),
+  profileCutoutPath: assetUrl("/profile-cutout.png"),
 };
 
 export interface SkillItem {

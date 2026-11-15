@@ -73,6 +73,152 @@ export default function Hero({ isDark }: HeroProps) {
     >
       <div className="container-custom relative z-10">
         <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:gap-8">
+          {/* Mobile lanyard card (matching reference, draggable & HD) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.1, ease: 'easeOut' }}
+            className="relative -mt-6 mb-4 flex flex-col items-center justify-center lg:hidden"
+          >
+            {/* Lanyard strap extending from behind navbar */}
+            <div
+              className={`relative z-0 flex h-24 w-10 items-center justify-center rounded-b-md border-x shadow-inner ${
+                isDark
+                  ? 'border-white/10 bg-gradient-to-b from-[#182235] via-[#0f172a] to-[#090d16]'
+                  : 'border-slate-300 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-950'
+              }`}
+            >
+              {/* Lanyard texture pattern */}
+              <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:4px_4px]" />
+              <span className="relative select-none text-[8.5px] font-extrabold uppercase tracking-[0.34em] text-slate-300/90 [writing-mode:vertical-rl]">
+                Ilham Rizki
+              </span>
+            </div>
+
+            {/* Metal connector / clip */}
+            <div className="relative z-10 -mt-2 flex flex-col items-center">
+              {/* Metallic clasp block */}
+              <div className="relative h-7 w-12 rounded-[5px] border border-white/40 bg-gradient-to-b from-slate-200 via-slate-400 to-slate-600 shadow-md">
+                <span className="absolute left-1/2 top-1/2 h-2.5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-slate-500/70 bg-slate-800/80" />
+              </div>
+              {/* Metal ring hooking through badge slot */}
+              <div className="relative -mt-1 h-6 w-5 rounded-full border-[2.5px] border-slate-300 bg-transparent shadow-sm" />
+            </div>
+
+            {/* Draggable HD ID Card */}
+            <motion.div
+              drag
+              dragSnapToOrigin
+              dragConstraints={{ left: -75, right: 75, top: -25, bottom: 45 }}
+              dragElastic={0.16}
+              animate={{ y: [0, -5, 0], rotate: [-1.2, 1.2, -1.2] }}
+              transition={{
+                y: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
+                rotate: { duration: 7, repeat: Infinity, ease: 'easeInOut' },
+              }}
+              whileDrag={{ scale: 1.04, rotate: 3, cursor: 'grabbing' }}
+              whileTap={{ cursor: 'grabbing' }}
+              className={`relative z-20 -mt-2 w-[min(82vw,290px)] cursor-grab touch-none select-none rounded-[22px] border p-3.5 shadow-[0_28px_70px_-20px_rgba(0,0,0,0.85)] active:cursor-grabbing ${
+                isDark
+                  ? 'border-white/20 bg-gradient-to-b from-[#162033] via-[#0d1424] to-[#070b14]'
+                  : 'border-slate-300 bg-gradient-to-b from-white via-slate-50 to-slate-100 shadow-[0_20px_50px_-15px_rgba(15,23,42,0.25)]'
+              }`}
+              aria-label="Kartu profil interaktif, sentuh dan geser kartu"
+            >
+              {/* Glossy specular highlight */}
+              <div className="pointer-events-none absolute inset-0 rounded-[22px] bg-gradient-to-tr from-white/[0.03] via-transparent to-white/10" />
+
+              {/* Lanyard punch hole slot */}
+              <div className="mx-auto -mt-1.5 mb-2.5 h-2 w-8 rounded-full border border-white/20 bg-[#05070d]/80 shadow-inner" />
+
+              {/* Card top banner */}
+              <div className="mb-2.5 flex items-center justify-between px-0.5">
+                <span
+                  className={`rounded-md px-2 py-0.5 font-mono text-[9px] font-extrabold uppercase tracking-widest ${
+                    isDark ? 'bg-white/10 text-slate-200' : 'bg-slate-900 text-white'
+                  }`}
+                >
+                  DEVELOPER
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <GraduationCap className="h-3.5 w-3.5 text-[#38bdf8]" />
+                  <span className="font-mono text-[9px] font-extrabold uppercase tracking-wider text-[#38bdf8]">
+                    UPGRIS
+                  </span>
+                </div>
+              </div>
+
+              {/* Big bold background text */}
+              <div className="relative overflow-hidden rounded-xl border border-white/10">
+                <div className="absolute inset-x-0 top-1 z-0 select-none text-center font-mono text-[28px] font-black uppercase tracking-[0.18em] text-white/[0.07]">
+                  DEV·ENG
+                </div>
+
+                {/* Photo frame */}
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-slate-900">
+                  {!imgError ? (
+                    <img
+                      src={personalInfo.profileImagePath}
+                      alt={personalInfo.name}
+                      className="h-full w-full object-cover object-top"
+                      fetchPriority="high"
+                      onError={() => setImgError(true)}
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-[#2c67ed]/20 font-mono text-3xl font-bold text-[#38bdf8]">
+                      MIR
+                    </div>
+                  )}
+
+                  {/* Gradient overlays for readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#05070d] via-[#05070d]/15 to-transparent" />
+
+                  {/* Vertical side label (like reference) */}
+                  <div className="absolute right-1.5 top-2 z-10 select-none [writing-mode:vertical-rl]">
+                    <span className="font-mono text-[7.5px] font-bold uppercase tracking-[0.25em] text-white/70 drop-shadow-sm">
+                      INFORMATIKA · S5
+                    </span>
+                  </div>
+
+                  {/* Nameplate banner (like reference) */}
+                  <div className="absolute inset-x-2 bottom-2 z-10 rounded-lg border border-white/20 bg-black/60 p-2 backdrop-blur-md">
+                    <p className="font-mono text-[7.5px] font-bold uppercase tracking-[0.22em] text-[#60a5fa]">
+                      Student ID Card
+                    </p>
+                    <p className="mt-0.5 truncate text-[13px] font-black uppercase tracking-wide text-white">
+                      {personalInfo.name}
+                    </p>
+                    <p className="text-[9.5px] font-medium text-slate-300">
+                      Web Developer & UI/UX
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card footer */}
+              <div className="mt-2.5 flex items-center justify-between px-1">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399]" />
+                  <span
+                    className={`font-mono text-[8px] uppercase tracking-wider ${
+                      isDark ? 'text-slate-400' : 'text-slate-600'
+                    }`}
+                  >
+                    Semarang, ID
+                  </span>
+                </div>
+                <span className="font-mono text-[8px] font-bold uppercase tracking-widest text-[#38bdf8]">
+                  PORTFOLIO
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Hint below card */}
+            <p className="mt-2 text-center font-mono text-[10px] text-slate-400/80">
+              • Tarik kartu untuk menggerakkan
+            </p>
+          </motion.div>
+
           {/* Left column */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
