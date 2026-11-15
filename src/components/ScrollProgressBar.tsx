@@ -7,8 +7,7 @@ export default function ScrollProgressBar() {
     const handleScroll = () => {
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (totalHeight > 0) {
-        const currentProgress = (window.scrollY / totalHeight) * 100;
-        setProgress(currentProgress);
+        setProgress((window.scrollY / totalHeight) * 100);
       }
     };
 
@@ -17,9 +16,9 @@ export default function ScrollProgressBar() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-[2.5px] z-[60] bg-transparent pointer-events-none">
+    <div className="pointer-events-none fixed left-0 right-0 top-0 z-[60] h-[2px] bg-transparent">
       <div
-        className="h-full bg-gradient-to-r from-[#386BFF] via-[#7855E8] to-[#28D6E8] transition-all duration-75"
+        className="h-full bg-gradient-to-r from-[#2c67ed] via-[#38bdf8] to-[#818cf8] transition-[width] duration-75"
         style={{ width: `${progress}%` }}
       />
     </div>

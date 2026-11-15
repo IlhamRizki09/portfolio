@@ -18,6 +18,7 @@ export interface Translations {
     greeting: string;
     role: string;
     status: string;
+    description: string;
     exploreBtn: string;
     downloadCvBtn: string;
     contactBtn: string;
@@ -40,6 +41,7 @@ export interface Translations {
     copyInfoBtn: string;
     infoCopied: string;
     viewCardBtn: string;
+    viewProjectsBtn: string;
   };
   skills: {
     label: string;
@@ -138,6 +140,7 @@ export interface Translations {
   contact: {
     label: string;
     title: string;
+    heading: string;
     subtitle: string;
     infoTitle: string;
     formTitle: string;
@@ -206,6 +209,8 @@ export const translations: Record<Language, Translations> = {
       greeting: "HALO, SAYA",
       role: "Informatics Student & Aspiring Web Developer",
       status: "Terbuka untuk Peluang Magang (Internship)",
+      description:
+        "Saya Muhammad Ilham Rizki, mahasiswa Informatika Semester 5 di Universitas PGRI Semarang. Saya membangun antarmuka web yang bersih, cepat, dan mudah digunakan — terus belajar, terus bereksperimen.",
       exploreBtn: "Explore Portfolio",
       downloadCvBtn: "Download CV",
       contactBtn: "Hubungi Saya",
@@ -228,6 +233,7 @@ export const translations: Record<Language, Translations> = {
       copyInfoBtn: "Salin Info Profil",
       infoCopied: "Informasi profil berhasil disalin!",
       viewCardBtn: "Lihat Kartu Nama",
+      viewProjectsBtn: "Lihat Proyek",
     },
     skills: {
       label: "Keahlian Teknis",
@@ -326,6 +332,7 @@ export const translations: Record<Language, Translations> = {
     contact: {
       label: "Mari Terhubung",
       title: "Let's Build Something Together",
+      heading: "Mari Terhubung",
       subtitle: "Terbuka untuk diskusi kesempatan magang, proyek kolaboratif, dan ide digital",
       infoTitle: "Informasi Kontak Langsung",
       formTitle: "Kirim Pesan Langsung",
@@ -392,6 +399,8 @@ export const translations: Record<Language, Translations> = {
       greeting: "HELLO, I AM",
       role: "Informatics Student & Aspiring Web Developer",
       status: "Open to Internship Opportunities",
+      description:
+        "I'm Muhammad Ilham Rizki, a 5th-semester Informatics student at Universitas PGRI Semarang. I build clean, fast, and accessible web interfaces — always learning, always experimenting.",
       exploreBtn: "Explore Portfolio",
       downloadCvBtn: "Download CV",
       contactBtn: "Contact Me",
@@ -414,6 +423,7 @@ export const translations: Record<Language, Translations> = {
       copyInfoBtn: "Copy Profile Info",
       infoCopied: "Profile info copied to clipboard!",
       viewCardBtn: "Digital Card",
+      viewProjectsBtn: "View Projects",
     },
     skills: {
       label: "Technical Expertise",
@@ -512,6 +522,7 @@ export const translations: Record<Language, Translations> = {
     contact: {
       label: "Get In Touch",
       title: "Let's Build Something Together",
+      heading: "Let's Connect",
       subtitle: "Open for internship opportunities, project collaborations, and digital inquiries",
       infoTitle: "Direct Contact Details",
       formTitle: "Send a Direct Message",

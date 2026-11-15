@@ -9,18 +9,16 @@ export default function LanguageToggle() {
     <motion.button
       whileTap={{ scale: 0.92 }}
       onClick={toggleLang}
-      className={`h-9 sm:h-10 px-2.5 sm:px-3 rounded-xl flex items-center gap-1.5 border transition-all duration-200 cursor-pointer ${
+      className={`inline-flex h-9 items-center gap-1.5 rounded-full border px-3 text-[11px] font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
         isDark
-          ? 'bg-[#0E162B] hover:bg-[#142B59] border-[#386BFF]/25 text-[#F5F7FF] hover:border-[#386BFF]/60'
-          : 'bg-white hover:bg-blue-50 border-blue-200 text-[#080D1C] hover:border-blue-300 shadow-sm'
+          ? 'border-white/10 bg-white/5 text-slate-200 hover:border-[#2c67ed]/45 hover:bg-[#2c67ed]/15 hover:text-white'
+          : 'border-blue-100 bg-blue-50/70 text-[#2563eb] hover:border-blue-300 hover:bg-blue-100'
       }`}
       aria-label="Switch language"
       title={lang === 'id' ? 'Switch to English' : 'Ganti ke Bahasa Indonesia'}
     >
-      <Languages className="w-3.5 h-3.5 text-[#386BFF]" />
-      <span className="text-xs font-bold uppercase tracking-wider">
-        {lang === 'id' ? 'ID' : 'EN'}
-      </span>
+      <Languages className="h-3.5 w-3.5" />
+      <span>{lang === 'id' ? 'ID' : 'EN'}</span>
     </motion.button>
   );
 }

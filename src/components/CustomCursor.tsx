@@ -73,7 +73,7 @@ export default function CustomCursor({ isDark }: { isDark: boolean }) {
         className="pointer-events-none fixed -inset-px z-30 transition-opacity duration-300 opacity-60"
         style={{
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${
-            isDark ? 'rgba(56, 107, 255, 0.055)' : 'rgba(56, 107, 255, 0.035)'
+            isDark ? 'rgba(44, 103, 237, 0.06)' : 'rgba(44, 103, 237, 0.04)'
           }, transparent 80%)`,
         }}
       />
@@ -84,8 +84,8 @@ export default function CustomCursor({ isDark }: { isDark: boolean }) {
         style={{
           width: isPointer ? 12 : 8,
           height: isPointer ? 12 : 8,
-          backgroundColor: '#28D6E8',
-          boxShadow: '0 0 10px #28D6E8',
+          backgroundColor: '#38bdf8',
+          boxShadow: '0 0 10px #38bdf8',
           transform: `translate3d(${position.x - (isPointer ? 6 : 4)}px, ${
             position.y - (isPointer ? 6 : 4)
           }px, 0)`,
@@ -98,8 +98,8 @@ export default function CustomCursor({ isDark }: { isDark: boolean }) {
         style={{
           width: isPointer ? 44 : 28,
           height: isPointer ? 44 : 28,
-          borderColor: isPointer ? 'rgba(56, 107, 255, 0.8)' : 'rgba(40, 214, 232, 0.45)',
-          backgroundColor: isPointer ? 'rgba(56, 107, 255, 0.12)' : 'transparent',
+          borderColor: isPointer ? 'rgba(44, 103, 237, 0.85)' : 'rgba(56, 189, 248, 0.45)',
+          backgroundColor: isPointer ? 'rgba(44, 103, 237, 0.12)' : 'transparent',
           transform: `translate3d(${trailing.x - (isPointer ? 22 : 14)}px, ${
             trailing.y - (isPointer ? 22 : 14)
           }px, 0)`,

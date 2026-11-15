@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search,
@@ -202,13 +202,13 @@ export default function CommandPalette() {
             transition={{ duration: 0.2 }}
             className={`relative w-full max-w-xl rounded-2xl border shadow-2xl overflow-hidden backdrop-blur-2xl z-10 ${
               isDark
-                ? 'bg-[#0E162B]/95 border-[#386BFF]/30 text-[#F5F7FF] shadow-black/80'
-                : 'bg-white/95 border-[#386BFF]/35 text-[#080D1C] shadow-2xl'
+                ? 'bg-[#0a0f20]/95 border-[#2c67ed]/30 text-[#f5f7ff] shadow-black/80'
+                : 'bg-white/95 border-[#2c67ed]/35 text-[#050510] shadow-2xl'
             }`}
           >
             {/* Search Input Bar */}
             <div className="flex items-center gap-3 px-4 py-3.5 border-b border-inherit">
-              <Search className="w-5 h-5 text-[#386BFF]" />
+              <Search className="w-5 h-5 text-[#2c67ed]" />
               <input
                 ref={inputRef}
                 type="text"
@@ -219,9 +219,9 @@ export default function CommandPalette() {
                 }}
                 onKeyDown={handleKeyDown}
                 placeholder={t.cmdPalette.placeholder}
-                className="w-full bg-transparent text-sm sm:text-base outline-none placeholder:text-[#9AA6C0]"
+                className="w-full bg-transparent text-sm sm:text-base outline-none placeholder:text-[#94a3b8]"
               />
-              <kbd className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-bold rounded bg-white/10 text-[#9AA6C0] border border-white/10">
+              <kbd className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-bold rounded bg-white/10 text-[#94a3b8] border border-white/10">
                 ESC
               </kbd>
             </div>
@@ -229,7 +229,7 @@ export default function CommandPalette() {
             {/* Commands List */}
             <div className="max-h-[360px] overflow-y-auto p-2 space-y-1">
               {filtered.length === 0 ? (
-                <div className="py-8 text-center text-sm text-[#9AA6C0]">
+                <div className="py-8 text-center text-sm text-[#94a3b8]">
                   {t.cmdPalette.noResults}
                 </div>
               ) : (
@@ -244,35 +244,35 @@ export default function CommandPalette() {
                       className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-sm transition-all cursor-pointer ${
                         isSelected
                           ? isDark
-                            ? 'bg-[#386BFF]/20 text-[#28D6E8]'
-                            : 'bg-[#386BFF]/15 text-[#386BFF]'
+                            ? 'bg-[#2c67ed]/20 text-[#38bdf8]'
+                            : 'bg-[#2c67ed]/15 text-[#2c67ed]'
                           : isDark
-                          ? 'text-[#F5F7FF] hover:bg-white/5'
-                          : 'text-[#080D1C] hover:bg-black/5'
+                          ? 'text-[#f5f7ff] hover:bg-white/5'
+                          : 'text-[#050510] hover:bg-black/5'
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <div
                           className={`w-8 h-8 rounded-lg flex items-center justify-center ${
                             isSelected
-                              ? 'bg-[#386BFF] text-white shadow-sm shadow-[#386BFF]'
+                              ? 'bg-[#2c67ed] text-white shadow-sm shadow-[#2c67ed]'
                               : isDark
-                              ? 'bg-[#142B59]/60 text-[#9AA6C0]'
-                              : 'bg-blue-50 text-[#386BFF]'
+                              ? 'bg-[#142B59]/60 text-[#94a3b8]'
+                              : 'bg-blue-50 text-[#2c67ed]'
                           }`}
                         >
                           <Icon className="w-4 h-4" />
                         </div>
                         <div>
                           <p className="font-semibold">{cmd.title}</p>
-                          <p className="text-[10px] text-[#9AA6C0] uppercase tracking-wider">
+                          <p className="text-[10px] text-[#94a3b8] uppercase tracking-wider">
                             {cmd.group}
                           </p>
                         </div>
                       </div>
 
                       {isSelected && (
-                        <CornerDownLeft className="w-4 h-4 text-[#28D6E8]" />
+                        <CornerDownLeft className="w-4 h-4 text-[#38bdf8]" />
                       )}
                     </button>
                   );
@@ -282,8 +282,8 @@ export default function CommandPalette() {
 
             {/* Footer Hint */}
             <div
-              className={`px-4 py-2.5 text-[11px] border-t flex items-center justify-between text-[#9AA6C0] ${
-                isDark ? 'border-white/5 bg-[#080D1C]/50' : 'border-black/5 bg-gray-50'
+              className={`px-4 py-2.5 text-[11px] border-t flex items-center justify-between text-[#94a3b8] ${
+                isDark ? 'border-white/5 bg-[#050510]/50' : 'border-black/5 bg-gray-50'
               }`}
             >
               <span>{t.cmdPalette.hint}</span>
@@ -295,3 +295,4 @@ export default function CommandPalette() {
     </AnimatePresence>
   );
 }
+

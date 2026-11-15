@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 interface ThreeHeroSceneProps {
@@ -261,12 +261,12 @@ export default function ThreeHeroScene({ isDark }: ThreeHeroSceneProps) {
   if (!hasWebGL) {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center relative p-6 text-center">
-        <div className="w-48 h-48 rounded-full border-2 border-dashed border-[#386BFF]/40 flex items-center justify-center animate-spin" style={{ animationDuration: '24s' }}>
-          <div className="w-36 h-36 rounded-full bg-gradient-to-tr from-[#386BFF] via-[#7855E8] to-[#28D6E8] opacity-75 blur-md" />
+        <div className="w-48 h-48 rounded-full border-2 border-dashed border-[#2c67ed]/40 flex items-center justify-center animate-spin" style={{ animationDuration: '24s' }}>
+          <div className="w-36 h-36 rounded-full bg-gradient-to-tr from-[#2c67ed] via-[#818cf8] to-[#38bdf8] opacity-75 blur-md" />
         </div>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-2xl font-black text-[#F5F7FF] tracking-widest">MIR.</span>
-          <span className="text-[11px] font-semibold text-[#28D6E8] uppercase tracking-wider mt-1">3D Core Active</span>
+          <span className="text-2xl font-black text-[#f5f7ff] tracking-widest">MIR.</span>
+          <span className="text-[11px] font-semibold text-[#38bdf8] uppercase tracking-wider mt-1">3D Core Active</span>
         </div>
       </div>
     );
@@ -280,3 +280,4 @@ export default function ThreeHeroScene({ isDark }: ThreeHeroSceneProps) {
     />
   );
 }
+

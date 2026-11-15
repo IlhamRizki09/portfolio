@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Code2,
@@ -13,7 +13,6 @@ import {
   FileEdit,
 } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
-import Card3DTilt from '../components/Card3DTilt';
 import EmptyState from '../components/EmptyState';
 import type { SkillItem } from '../data/portfolioData';
 import { skillCategories } from '../data/portfolioData';
@@ -35,6 +34,33 @@ export default function Skills({ isDark }: SkillsProps) {
     { id: 'backend-db', label: 'Backend & DB', icon: Server },
     { id: 'tools', label: 'Tools & Networking', icon: Wrench },
   ];
+
+  const getSkillIcon = (iconName: string) => {
+    const icons: Record<string, typeof Code2> = {
+      code: Code2,
+      users: Users,
+      'check-circle': CheckCircle2,
+      award: Award,
+      sparkles: Sparkles,
+      'edit-3': FileEdit,
+      javascript: Code2,
+      php: Server,
+      python: Code2,
+      html: Layout,
+      css: Layout,
+      react: Layers,
+      tailwind: Layout,
+      database: Server,
+      nodejs: Server,
+      git: Wrench,
+      vscode: Code2,
+      figma: Layout,
+      vite: Wrench,
+      network: Server,
+      cpu: Server,
+    };
+    return icons[iconName] || Code2;
+  };
 
   // Aggregate or filter skills (deduplicated so shared stack items appear once)
   const seen = new Set<string>();
@@ -63,40 +89,21 @@ export default function Skills({ isDark }: SkillsProps) {
     return labels[category] ?? category;
   };
 
-  const getSkillIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'users':
-        return Users;
-      case 'award':
-        return Award;
-      case 'check-circle':
-        return CheckCircle2;
-      case 'edit-3':
-        return FileEdit;
-      case 'code':
-        return Code2;
-      default:
-        return Sparkles;
-    }
-  };
-
   return (
-    <section
-      id="skills"
-      className={`section-py transition-colors duration-300 ${
-        isDark ? 'bg-[#0E162B]' : 'bg-[#FFFFFF]'
-      }`}
-    >
+    <section id="skills" className="relative section-py">
       <div className="container-custom overflow-x-clip">
         <SectionHeading
-          label={t.skills.label}
           title={t.skills.title}
           subtitle={t.skills.subtitle}
           isDark={isDark}
         />
 
         {/* Category Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10 max-w-4xl mx-auto">
+        <div
+          className={`mx-auto mb-10 grid w-full max-w-md grid-cols-2 gap-1.5 rounded-2xl border p-1.5 backdrop-blur-xl sm:flex sm:w-fit sm:max-w-full sm:flex-wrap sm:items-center sm:justify-center lg:flex-nowrap ${
+            isDark ? 'border-white/10 bg-[#0a0f20]/60' : 'border-slate-200 bg-white/70'
+          }`}
+        >
           {filterTabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeCategory === tab.id;
@@ -104,15 +111,11 @@ export default function Skills({ isDark }: SkillsProps) {
               <button
                 key={tab.id}
                 onClick={() => setActiveCategory(tab.id)}
-                className={`shrink-0 whitespace-nowrap px-3.5 py-2 rounded-xl text-xs font-bold border transition-all duration-200 cursor-pointer flex items-center gap-2 ${
-                  isActive
-                    ? 'bg-gradient-to-r from-[#386BFF] to-[#7855E8] border-transparent text-white shadow-md shadow-[#386BFF]/25'
-                    : isDark
-                    ? 'bg-[#142B59]/30 border-[#386BFF]/20 text-[#9AA6C0] hover:text-[#F5F7FF] hover:border-[#386BFF]/40'
-                    : 'bg-gray-50 border-gray-200 text-[#4B556D] hover:text-black hover:border-blue-300'
+                className={`tab-btn w-full cursor-pointer sm:w-auto ${
+                  isActive ? 'tab-btn-active' : isDark ? '' : 'text-slate-600'
                 }`}
               >
-                <Icon className="w-3.5 h-3.5" />
+                <Icon className="h-3.5 w-3.5" />
                 <span>{tab.label}</span>
               </button>
             );
@@ -127,10 +130,7 @@ export default function Skills({ isDark }: SkillsProps) {
             isDark={isDark}
           />
         ) : (
-          <motion.div
-            layout
-            className="flex flex-wrap justify-center gap-4"
-          >
+          <motion.div layout className="flex flex-wrap justify-center gap-4">
             {displayedSkills.map((skill, index) => {
               const IconComp = getSkillIcon(skill.icon);
               return (
@@ -138,29 +138,32 @@ export default function Skills({ isDark }: SkillsProps) {
                   key={`${skill.category}-${skill.name}`}
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.04 }}
+                  transition={{ duration: 0.3, delay: index * 0.03 }}
                   className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.667rem)] md:w-[calc(25%-0.75rem)] xl:w-[calc(16.6667%-0.834rem)]"
                 >
-                  <Card3DTilt isDark={isDark} className="p-4 h-full group">
-                    <div className="flex h-full flex-col items-center text-center">
-                      {/* Skill Tech Icon / Monogram */}
-                      <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 bg-gradient-to-tr from-[#386BFF]/15 to-[#28D6E8]/10 border border-[#386BFF]/25 text-[#28D6E8] group-hover:border-[#28D6E8]/60 group-hover:scale-110 transition-all duration-300 shadow-sm">
-                        <IconComp className="w-5 h-5 text-[#386BFF] group-hover:text-[#28D6E8]" />
-                      </div>
-
-                      <h3
-                        className={`text-xs sm:text-sm font-bold tracking-tight leading-snug min-h-[2.5rem] flex items-center justify-center text-balance ${
-                          isDark ? 'text-[#F5F7FF]' : 'text-[#080D1C]'
-                        }`}
-                      >
-                        {skill.name}
-                      </h3>
-
-                      <span className="mt-auto pt-1 text-[10px] font-semibold text-[#9AA6C0] uppercase tracking-wider">
-                        {categoryLabel(skill.category)}
-                      </span>
+                  <div className="skill-card group h-full">
+                    <div
+                      className={`mb-3 flex h-14 w-14 items-center justify-center rounded-2xl border transition-all duration-300 group-hover:scale-105 ${
+                        isDark
+                          ? 'border-[#3b82f6]/25 bg-gradient-to-tr from-[#2c67ed]/15 to-[#38bdf8]/10 text-[#7dd3fc]'
+                          : 'border-blue-100 bg-gradient-to-tr from-blue-50 to-sky-50 text-[#2563eb]'
+                      }`}
+                    >
+                      <IconComp className="h-6 w-6" />
                     </div>
-                  </Card3DTilt>
+
+                    <h3
+                      className={`flex min-h-[2.5rem] items-center justify-center text-balance text-xs font-bold leading-snug tracking-tight sm:text-sm ${
+                        isDark ? 'text-[#d8deeb]' : 'text-slate-800'
+                      }`}
+                    >
+                      {skill.name}
+                    </h3>
+
+                    <span className="mt-auto pt-1 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-[#818a9b]">
+                      {categoryLabel(skill.category)}
+                    </span>
+                  </div>
                 </motion.div>
               );
             })}
@@ -170,3 +173,4 @@ export default function Skills({ isDark }: SkillsProps) {
     </section>
   );
 }
+

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+﻿import React, { useRef, useState } from 'react';
 
 interface Card3DTiltProps {
   children: React.ReactNode;
@@ -65,8 +65,8 @@ export default function Card3DTilt({
         }}
         className={`relative h-full rounded-2xl overflow-hidden border transition-shadow duration-300 backdrop-blur-xl ${
           isDark
-            ? 'bg-[#0E162B]/80 border-[#386BFF]/20 text-[#F5F7FF] shadow-lg shadow-black/40 hover:border-[#28D6E8]/40 hover:shadow-[0_12px_36px_-6px_rgba(56,107,255,0.22)]'
-            : 'bg-white/90 border-[#386BFF]/25 text-[#080D1C] shadow-md shadow-blue-500/5 hover:border-[#386BFF]/50 hover:shadow-xl'
+            ? 'bg-[#0a0f20]/80 border-[#2c67ed]/20 text-[#f5f7ff] shadow-lg shadow-black/40 hover:border-[#38bdf8]/40 hover:shadow-[0_12px_36px_-6px_rgba(56,107,255,0.22)]'
+            : 'bg-white/90 border-[#2c67ed]/25 text-[#050510] shadow-md shadow-blue-500/5 hover:border-[#2c67ed]/50 hover:shadow-xl'
         } ${className}`}
       >
         {/* Dynamic Spotlight Glow */}
@@ -86,3 +86,4 @@ export default function Card3DTilt({
     </div>
   );
 }
+

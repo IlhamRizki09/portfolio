@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Download, ExternalLink, Maximize2, Minimize2, FileText } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
@@ -34,21 +34,21 @@ export default function CVViewerModal() {
             isFullscreen ? 'h-full max-w-full' : 'max-w-5xl h-[88vh]'
           } ${
             isDark
-              ? 'bg-[#0E162B] border-[#386BFF]/30 text-[#F5F7FF]'
-              : 'bg-white border-[#386BFF]/35 text-[#080D1C]'
+              ? 'bg-[#0a0f20] border-[#2c67ed]/30 text-[#f5f7ff]'
+              : 'bg-white border-[#2c67ed]/35 text-[#050510]'
           }`}
         >
           {/* Header Bar */}
           <div className="px-5 py-3.5 border-b border-inherit flex items-center justify-between bg-black/20 flex-shrink-0">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#386BFF]/20 text-[#386BFF] flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-[#2c67ed]/20 text-[#2c67ed] flex items-center justify-center">
                 <FileText className="w-4 h-4" />
               </div>
               <div>
                 <h3 className="text-sm sm:text-base font-bold leading-tight">
                   {t.cvViewer.title}
                 </h3>
-                <p className="text-[11px] text-[#9AA6C0]">
+                <p className="text-[11px] text-[#94a3b8]">
                   {personalInfo.name} &bull; {personalInfo.cvFileName}
                 </p>
               </div>
@@ -59,7 +59,7 @@ export default function CVViewerModal() {
               <a
                 href={cvPath}
                 download={personalInfo.cvFileName}
-                className="h-8 sm:h-9 px-3 rounded-lg text-xs font-semibold bg-[#386BFF] hover:bg-[#2E5BE5] text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+                className="h-8 sm:h-9 px-3 rounded-lg text-xs font-semibold bg-[#2c67ed] hover:bg-[#2E5BE5] text-white flex items-center gap-1.5 transition-colors cursor-pointer"
                 title={t.cvViewer.download}
               >
                 <Download className="w-3.5 h-3.5" />
@@ -70,7 +70,7 @@ export default function CVViewerModal() {
                 href={cvPath}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-8 sm:h-9 px-2.5 sm:px-3 rounded-lg text-xs font-semibold border border-white/10 hover:bg-white/10 flex items-center gap-1.5 transition-colors text-[#9AA6C0] hover:text-white"
+                className="h-8 sm:h-9 px-2.5 sm:px-3 rounded-lg text-xs font-semibold border border-white/10 hover:bg-white/10 flex items-center gap-1.5 transition-colors text-[#94a3b8] hover:text-white"
                 title={t.cvViewer.openNewTab}
               >
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -79,7 +79,7 @@ export default function CVViewerModal() {
 
               <button
                 onClick={() => setIsFullscreen((prev) => !prev)}
-                className="p-2 rounded-lg border border-white/10 hover:bg-white/10 text-[#9AA6C0] hover:text-white transition-colors cursor-pointer"
+                className="p-2 rounded-lg border border-white/10 hover:bg-white/10 text-[#94a3b8] hover:text-white transition-colors cursor-pointer"
                 aria-label={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
               >
                 {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
@@ -87,7 +87,7 @@ export default function CVViewerModal() {
 
               <button
                 onClick={closeCv}
-                className="p-2 rounded-lg border border-white/10 hover:bg-rose-500/20 hover:text-rose-400 text-[#9AA6C0] transition-colors cursor-pointer"
+                className="p-2 rounded-lg border border-white/10 hover:bg-rose-500/20 hover:text-rose-400 text-[#94a3b8] transition-colors cursor-pointer"
                 aria-label="Close CV Viewer"
               >
                 <X className="w-4 h-4" />
@@ -96,7 +96,7 @@ export default function CVViewerModal() {
           </div>
 
           {/* PDF Viewer Body */}
-          <div className="flex-1 w-full h-full relative bg-[#080D1C] overflow-hidden">
+          <div className="flex-1 w-full h-full relative bg-[#050510] overflow-hidden">
             <iframe
               src={`${cvPath}#toolbar=1&navpanes=0`}
               title="Curriculum Vitae Muhammad Ilham Rizki"
@@ -108,3 +108,4 @@ export default function CVViewerModal() {
     </AnimatePresence>
   );
 }
+

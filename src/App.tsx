@@ -7,6 +7,7 @@ import ScrollToTop from './components/ScrollToTop';
 import ScrollProgressBar from './components/ScrollProgressBar';
 import CustomCursor from './components/CustomCursor';
 import LoadingScreen from './components/LoadingScreen';
+import SpaceBackground from './components/SpaceBackground';
 import CommandPalette from './components/CommandPalette';
 import RecruiterModeModal from './components/RecruiterModeModal';
 import CVViewerModal from './components/CVViewerModal';
@@ -17,8 +18,8 @@ import ToastContainer from './components/ToastContainer';
 import Hero from './sections/Hero';
 import About from './sections/About';
 import Skills from './sections/Skills';
-import Experience from './sections/Experience';
 import Education from './sections/Education';
+import Experience from './sections/Experience';
 import Certificates from './sections/Certificates';
 import Projects from './sections/Projects';
 import Contact from './sections/Contact';
@@ -30,7 +31,9 @@ function PortfolioMain() {
   const { isScrolled, scrollY } = useScrollPosition();
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden relative bg-grid-pattern">
+    <div className="relative min-h-screen w-full overflow-x-hidden">
+      <SpaceBackground isDark={isDark} />
+
       <LoadingScreen />
       <ScrollProgressBar />
       <CustomCursor isDark={isDark} />
@@ -41,21 +44,23 @@ function PortfolioMain() {
       <DigitalBusinessCardModal />
       <NotFoundModal />
 
-      <Navbar activeSection={activeSection} isScrolled={isScrolled} />
+      <div className="relative z-10">
+        <Navbar activeSection={activeSection} isScrolled={isScrolled} />
 
-      <main>
-        <Hero isDark={isDark} />
-        <About isDark={isDark} />
-        <Skills isDark={isDark} />
-        <Experience isDark={isDark} />
-        <Education isDark={isDark} />
-        <Certificates isDark={isDark} />
-        <Projects isDark={isDark} />
-        <Contact isDark={isDark} />
-      </main>
+        <main>
+          <Hero isDark={isDark} />
+          <About isDark={isDark} />
+          <Skills isDark={isDark} />
+          <Education isDark={isDark} />
+          <Experience isDark={isDark} />
+          <Certificates isDark={isDark} />
+          <Projects isDark={isDark} />
+          <Contact isDark={isDark} />
+        </main>
 
-      <Footer isDark={isDark} />
-      <ScrollToTop isVisible={scrollY > 400} />
+        <Footer isDark={isDark} />
+        <ScrollToTop isVisible={scrollY > 400} />
+      </div>
     </div>
   );
 }

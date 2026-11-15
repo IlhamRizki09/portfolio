@@ -1,8 +1,12 @@
 import { motion } from 'framer-motion';
-import { Briefcase, Award, Users, CheckCircle2 } from 'lucide-react';
+import { Briefcase, Award, Users, CheckCircle2, Code2, Layers } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
-import Card3DTilt from '../components/Card3DTilt';
-import { experiences } from '../data/portfolioData';
+import {
+  experiences,
+  projects,
+  certificates,
+  skillCategories,
+} from '../data/portfolioData';
 import { usePortfolio } from '../context/PortfolioContext';
 
 interface ExperienceProps {
@@ -10,112 +14,187 @@ interface ExperienceProps {
 }
 
 export default function Experience({ isDark }: ExperienceProps) {
-  const { t } = usePortfolio();
+  const { t, lang } = usePortfolio();
+
+  const uniqueSkills = new Set(
+    skillCategories.flatMap((cat) => cat.skills.map((skill) => skill.name.toLowerCase()))
+  ).size;
+
+  const stats = [
+    {
+      icon: Code2,
+      value: projects.length,
+      label: t.nav.projects,
+      description: lang === 'id' ? 'Karya yang dibuat' : 'Works created',
+      target: '#projects',
+    },
+    {
+      icon: Award,
+      value: certificates.length,
+      label: t.nav.certificates,
+      description: lang === 'id' ? 'Skill yang divalidasi' : 'Validated skills',
+      target: '#certificates',
+    },
+    {
+      icon: Layers,
+      value: uniqueSkills,
+      label: t.nav.skills,
+      description: lang === 'id' ? 'Teknologi dikuasai' : 'Technologies mastered',
+      target: '#skills',
+    },
+  ];
+
+  const scrollTo = (id: string) => {
+    const el = document.querySelector(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
-    <section
-      id="experience"
-      className={`section-py transition-colors duration-300 ${
-        isDark ? 'bg-[#080D1C]' : 'bg-[#F5F7FF]'
-      }`}
-    >
+    <section id="experience" className="relative section-py pt-8 sm:pt-10">
       <div className="container-custom">
         <SectionHeading
-          label={t.experience.label}
           title={t.experience.title}
           subtitle={t.experience.subtitle}
           isDark={isDark}
+          align="left"
         />
 
-        {/* Vertical Timeline Architecture */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Central Vertical Glowing Line */}
-          <div className="absolute left-4 sm:left-1/2 top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#386BFF] via-[#7855E8] to-[#28D6E8] -translate-x-1/2 opacity-30 pointer-events-none" />
+        <div className="grid items-start gap-4 md:grid-cols-2">
+          {experiences.map((exp, index) => {
+            const Icon =
+              exp.roleType === 'committee'
+                ? Award
+                : exp.roleType === 'organization'
+                ? Users
+                : Briefcase;
 
-          <div className="space-y-8 sm:space-y-12">
-            {experiences.map((exp, index) => {
-              const isEven = index % 2 === 0;
-              const Icon =
-                exp.roleType === 'committee'
-                  ? Award
-                  : exp.roleType === 'organization'
-                  ? Users
-                  : Briefcase;
-
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.45, delay: index * 0.08 }}
-                  className="relative flex flex-col sm:flex-row items-start"
+            return (
+              <motion.article
+                key={`${exp.title}-${exp.organization}`}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.4, delay: (index % 2) * 0.06 }}
+                className="glass-card flex gap-4 p-4 sm:p-5"
+              >
+                <span
+                  className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border ${
+                    isDark
+                      ? 'border-[#3b82f6]/20 bg-[#25457b]/30 text-[#9ec5ff]'
+                      : 'border-blue-100 bg-blue-50 text-[#2563eb]'
+                  }`}
                 >
-                  {/* Timeline Central Marker Node */}
-                  <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 top-5 z-20 flex items-center justify-center">
-                    <div className="w-8 h-8 rounded-full bg-[#080D1C] border-2 border-[#386BFF] flex items-center justify-center shadow-lg shadow-[#386BFF]/40">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#28D6E8]" />
-                    </div>
+                  <Icon className="h-5 w-5" />
+                </span>
+
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <h3
+                      className={`text-[0.98rem] font-bold leading-snug sm:text-[1.05rem] ${
+                        isDark ? 'text-slate-50' : 'text-slate-900'
+                      }`}
+                    >
+                      {exp.title}
+                    </h3>
+                    {exp.period && (
+                      <span className="font-mono text-[10px] font-semibold text-[#82baff]">
+                        {exp.period}
+                      </span>
+                    )}
                   </div>
 
-                  {/* Card Container (Offsetting alternating sides on desktop) */}
-                  <div
-                    className={`w-full sm:w-[calc(50%-2rem)] pl-12 sm:pl-0 ${
-                      isEven ? 'sm:mr-auto sm:pr-2' : 'sm:ml-auto sm:pl-8'
+                  <p className="mt-0.5 text-[13px] font-semibold text-[#60a5fa]">
+                    {exp.organization}
+                  </p>
+
+                  <span
+                    className={`mt-1 inline-flex rounded-md border px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.12em] ${
+                      isDark
+                        ? 'border-white/10 bg-white/5 text-slate-400'
+                        : 'border-slate-200 bg-slate-50 text-slate-500'
                     }`}
                   >
-                    <Card3DTilt isDark={isDark} className="p-5 sm:p-6 border-l-4 border-l-[#386BFF]">
-                      {/* Header with Type Badge */}
-                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-md bg-[#386BFF]/15 text-[#28D6E8] border border-[#386BFF]/25 uppercase tracking-wider">
-                          {exp.type}
-                        </span>
-                        {exp.period && (
-                          <span className="text-[11px] font-semibold text-[#9AA6C0]">
-                            {exp.period}
-                          </span>
-                        )}
-                      </div>
+                    {exp.type}
+                  </span>
 
-                      {/* Title & Organization */}
-                      <h3
-                        className={`text-base sm:text-lg font-black tracking-tight ${
-                          isDark ? 'text-[#F5F7FF]' : 'text-[#080D1C]'
-                        }`}
-                      >
-                        {exp.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm font-semibold text-[#386BFF] mb-3 flex items-center gap-1.5">
-                        <Icon className="w-3.5 h-3.5 flex-shrink-0" />
-                        <span>{exp.organization}</span>
-                      </p>
+                  <p
+                    className={`mt-2 text-[12.5px] leading-relaxed ${
+                      isDark ? 'text-[#aeb8cc]' : 'text-slate-600'
+                    }`}
+                  >
+                    {exp.description}
+                  </p>
 
-                      {/* Description */}
-                      <p
-                        className={`text-xs sm:text-sm leading-relaxed mb-3.5 ${
-                          isDark ? 'text-[#9AA6C0]' : 'text-[#4B556D]'
-                        }`}
-                      >
-                        {exp.description}
-                      </p>
+                  {exp.responsibilities.length > 0 && (
+                    <ul className="mt-2 space-y-1">
+                      {exp.responsibilities.map((resp) => (
+                        <li
+                          key={resp}
+                          className={`flex items-start gap-1.5 text-[11.5px] leading-relaxed ${
+                            isDark ? 'text-slate-400' : 'text-slate-500'
+                          }`}
+                        >
+                          <CheckCircle2 className="mt-0.5 h-3 w-3 flex-shrink-0 text-[#38bdf8]" />
+                          <span>{resp}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </motion.article>
+            );
+          })}
+        </div>
 
-                      {/* Responsibilities list if available */}
-                      {exp.responsibilities.length > 0 && (
-                        <div className="space-y-1.5 pt-2 border-t border-inherit">
-                          {exp.responsibilities.map((resp, rIdx) => (
-                            <div key={rIdx} className="flex items-start gap-2 text-xs text-[#9AA6C0]">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-[#28D6E8] flex-shrink-0 mt-0.5" />
-                              <span>{resp}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </Card3DTilt>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+        {/* Statistics */}
+        <div className="mt-14 grid gap-4 sm:grid-cols-3">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <motion.a
+                key={stat.label}
+                href={stat.target}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo(stat.target);
+                }}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: index * 0.07 }}
+                className="glass-card group relative min-h-[168px] cursor-pointer overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#3b82f6]/40"
+              >
+                <div className="flex items-start justify-between">
+                  <span
+                    className={`flex h-[54px] w-[54px] items-center justify-center rounded-[14px] border ${
+                      isDark
+                        ? 'border-[#3b82f6]/20 bg-[#25457b]/30 text-[#9ec5ff]'
+                        : 'border-blue-100 bg-blue-50 text-[#2563eb]'
+                    }`}
+                  >
+                    <Icon className="h-6 w-6" />
+                  </span>
+                  <strong
+                    className={`text-[clamp(2.5rem,5vw,3.6rem)] font-extrabold leading-none tracking-[-0.06em] ${
+                      isDark ? 'text-[#f4f5ff]' : 'text-slate-900'
+                    }`}
+                  >
+                    {stat.value}
+                  </strong>
+                </div>
+                <h3
+                  className={`mt-5 text-[0.84rem] font-extrabold uppercase tracking-[0.09em] ${
+                    isDark ? 'text-[#e7ecfa]' : 'text-slate-800'
+                  }`}
+                >
+                  {stat.label}
+                </h3>
+                <p className={`mt-1 text-sm ${isDark ? 'text-[#a4aec1]' : 'text-slate-500'}`}>
+                  {stat.description}
+                </p>
+              </motion.a>
+            );
+          })}
         </div>
       </div>
     </section>
