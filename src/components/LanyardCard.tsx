@@ -138,7 +138,7 @@ export default function LanyardCard({ isDark, idPrefix = 'lanyard', className = 
               {/* Vertical side label */}
               <div className="absolute right-1.5 top-2 z-10 select-none [writing-mode:vertical-rl]">
                 <span className="font-mono text-[7.5px] font-bold uppercase tracking-[0.25em] text-white/70 drop-shadow-sm lg:text-[8px]">
-                  INFORMATIKA · S5
+                  INFORMATIKA · S1
                 </span>
               </div>
 

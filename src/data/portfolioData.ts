@@ -196,7 +196,7 @@ export const experiences: ExperienceItem[] = [
     ],
   },
   {
-    title: "Pengurus — Departemen Bakat dan Minat",
+    title: "Ketua Departemen Bakat dan Minat",
     organization: "BEM Fakultas Teknik dan Informatika (FTI UPGRIS)",
     type: "Organisasi Mahasiswa",
     roleType: "organization",

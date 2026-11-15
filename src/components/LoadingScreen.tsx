@@ -35,11 +35,11 @@ export default function LoadingScreen() {
           />
 
           <div className="relative z-10 flex w-[min(82vw,320px)] flex-col items-center">
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-extrabold tracking-tight text-white">
-                MIR<span className="text-[#38bdf8]">.</span>
+            <div className="flex flex-col items-center text-center">
+              <span className="text-lg font-extrabold uppercase tracking-[0.12em] text-white sm:text-xl">
+                Muhammad Ilham Rizki
               </span>
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-[#60a5fa]">
+              <span className="mt-1 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#60a5fa]">
                 Portfolio
               </span>
             </div>
