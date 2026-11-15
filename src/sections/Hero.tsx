@@ -203,7 +203,7 @@ export default function Hero({ isDark }: HeroProps) {
             </div>
           </motion.div>
 
-          <LanyardCard isDark={isDark} idPrefix="desktop-lanyard" className="hidden lg:flex lg:-translate-y-52 lg:justify-end lg:pr-4 xl:-translate-y-56 xl:pr-10" />
+          <LanyardCard isDark={isDark} idPrefix="desktop-lanyard" className="hidden lg:flex lg:-translate-y-32 lg:justify-end lg:pr-4 xl:-translate-y-36 xl:pr-10" />
         </div>
       </div>
     </section>
