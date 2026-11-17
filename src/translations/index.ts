@@ -100,7 +100,6 @@ export interface Translations {
     emptyDesc: string;
     viewLive: string;
     sourceCode: string;
-    viewDesign: string;
   };
   recruiter: {
     title: string;
@@ -291,9 +290,8 @@ export const translations: Record<Language, Translations> = {
       subtitle: "Koleksi proyek nyata dan eksperimen digital terkurasi",
       emptyTitle: "Projects are currently being curated.",
       emptyDesc: "Selected works and digital experiments will be showcased here.",
-      viewLive: "Live Demo",
-      sourceCode: "Kode Sumber",
-      viewDesign: "Lihat Desain",
+      viewLive: "Buka proyek",
+      sourceCode: "Buka repositori",
     },
     recruiter: {
       title: "Recruiter Fast Mode",
@@ -482,9 +480,8 @@ export const translations: Record<Language, Translations> = {
       subtitle: "Curated collection of digital builds, web apps, and technical experiments",
       emptyTitle: "Projects are currently being curated.",
       emptyDesc: "Selected works and digital experiments will be showcased here.",
-      viewLive: "Live Demo",
-      sourceCode: "Source Code",
-      viewDesign: "View Design",
+      viewLive: "Open project",
+      sourceCode: "Open repository",
     },
     recruiter: {
       title: "Recruiter Fast Mode",

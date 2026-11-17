@@ -393,6 +393,14 @@ export const certificates: CertificateItem[] = [
   },
 ];
 
+export interface ProjectCover {
+  variant: 'monogram' | 'editorial';
+  kicker: string;
+  headline: string[];
+  footnote: string;
+  signature: string;
+}
+
 export interface ProjectItem {
   title: string;
   description: string;
@@ -401,30 +409,41 @@ export interface ProjectItem {
   liveUrl?: string;
   designUrl?: string;
   repoUrl?: string;
-  featured?: boolean;
   category: string;
-  coverText: string;
+  cover: ProjectCover;
 }
 
 export const projects: ProjectItem[] = [
   {
-    title: "CV. Karya Nugraha",
+    title: "CV. Karya Nugraha — Sistem Informasi Pergudangan",
     category: "UI/UX Design",
-    coverText: "CV",
     description:
-      "Perancangan desain CV dan identitas visual Karya Nugraha di Figma, mencakup hierarki tipografi, tata letak informasi, serta komponen desain yang konsisten dan siap dikembangkan.",
-    tech: ["Figma", "UI/UX Design", "Design System"],
+      "Perancangan prototype aplikasi Sistem Informasi Pergudangan untuk CV. Karya Nugraha menggunakan Figma. Prototype mencakup dashboard, data barang, tambah barang, dan alur stok gudang.",
+    tech: ["Figma"],
     designUrl:
       "https://www.figma.com/design/dZ5No6GYeCDb0HTYda7gDn/CV.KARYA-NUGRAHA?node-id=0-1",
+    cover: {
+      variant: "monogram",
+      kicker: "Prototype",
+      headline: ["Sistem", "Informasi", "Pergudangan"],
+      footnote: "CV. Karya Nugraha",
+      signature: "Figma",
+    },
   },
   {
-    title: "KKL Kelompok 2 — Bali Expedition 2026",
-    category: "Web Dokumentasi",
-    coverText: "KKL 2026",
+    title: "KKL Informatika UPGRIS 2026 — Bali Trip Journal",
+    category: "Web Design",
     description:
-      "Website arsip Kuliah Kunjungan Lapangan 2026 Kelompok 2 ke Bali. Memuat dokumentasi video, profil sepuluh anggota tim, detail lokasi kunjungan, galeri foto, serta dinding kesan dan pesan yang tersimpan di Supabase.",
-    tech: ["HTML", "CSS", "JavaScript", "Supabase", "Vercel"],
+      "Perancangan dan pengembangan website Bali Trip Journal sebagai media dokumentasi kegiatan Kuliah Kunjungan Lapangan (KKL) Prodi Informatika Universitas PGRI Semarang tahun 2026.",
+    tech: ["HTML", "CSS", "JavaScript"],
     liveUrl: "https://kkl-kelompok-2-2026.vercel.app/",
+    cover: {
+      variant: "editorial",
+      kicker: "Trip Journal",
+      headline: ["Bali", "Trip Journal"],
+      footnote: "KKL · Informatika · UPGRIS",
+      signature: "2026",
+    },
   },
 ];
 
