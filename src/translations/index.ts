@@ -100,6 +100,7 @@ export interface Translations {
     emptyDesc: string;
     viewLive: string;
     sourceCode: string;
+    viewDesign: string;
   };
   recruiter: {
     title: string;
@@ -292,6 +293,7 @@ export const translations: Record<Language, Translations> = {
       emptyDesc: "Selected works and digital experiments will be showcased here.",
       viewLive: "Live Demo",
       sourceCode: "Kode Sumber",
+      viewDesign: "Lihat Desain",
     },
     recruiter: {
       title: "Recruiter Fast Mode",
@@ -482,6 +484,7 @@ export const translations: Record<Language, Translations> = {
       emptyDesc: "Selected works and digital experiments will be showcased here.",
       viewLive: "Live Demo",
       sourceCode: "Source Code",
+      viewDesign: "View Design",
     },
     recruiter: {
       title: "Recruiter Fast Mode",

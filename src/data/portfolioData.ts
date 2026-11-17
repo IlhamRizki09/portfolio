@@ -399,11 +399,34 @@ export interface ProjectItem {
   tech: string[];
   imageUrl?: string;
   liveUrl?: string;
+  designUrl?: string;
   repoUrl?: string;
   featured?: boolean;
+  category: string;
+  coverText: string;
 }
 
-export const projects: ProjectItem[] = [];
+export const projects: ProjectItem[] = [
+  {
+    title: "CV. Karya Nugraha",
+    category: "UI/UX Design",
+    coverText: "CV",
+    description:
+      "Perancangan desain CV dan identitas visual Karya Nugraha di Figma, mencakup hierarki tipografi, tata letak informasi, serta komponen desain yang konsisten dan siap dikembangkan.",
+    tech: ["Figma", "UI/UX Design", "Design System"],
+    designUrl:
+      "https://www.figma.com/design/dZ5No6GYeCDb0HTYda7gDn/CV.KARYA-NUGRAHA?node-id=0-1",
+  },
+  {
+    title: "KKL Kelompok 2 — Bali Expedition 2026",
+    category: "Web Dokumentasi",
+    coverText: "KKL 2026",
+    description:
+      "Website arsip Kuliah Kunjungan Lapangan 2026 Kelompok 2 ke Bali. Memuat dokumentasi video, profil sepuluh anggota tim, detail lokasi kunjungan, galeri foto, serta dinding kesan dan pesan yang tersimpan di Supabase.",
+    tech: ["HTML", "CSS", "JavaScript", "Supabase", "Vercel"],
+    liveUrl: "https://kkl-kelompok-2-2026.vercel.app/",
+  },
+];
 
 export const navItems = [
   { id: "home", labelId: "Home", labelEn: "Home", href: "#home" },
